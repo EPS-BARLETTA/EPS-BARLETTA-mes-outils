@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin • EPS-BARLETTA Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo-circle">ADM</div>
+      <div>
+        <h1>Administration des applications</h1>
+        <p>Ajouter, modifier et supprimer les apps du portail.</p>
+      </div>
+    </div>
+    <nav class="header-actions">
+      <a href="index.html" class="btn-outline">Retour au portail</a>
+    </nav>
+  </header>
+
+  <!-- écran de login -->
+  <div id="loginOverlay" style="
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, #020617 0, #000 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  ">
+    <div style="
+      background:#020617;
+      border-radius:18px;
+      padding:22px 20px 20px;
+      max-width:360px;
+      width:90%;
+      border:1px solid rgba(148,163,184,0.3);
+      box-shadow:0 20px 60px rgba(15,23,42,0.9);
+    ">
+      <h2 style="margin-top:0;margin-bottom:8px;font-size:1.1rem;">Connexion administrateur</h2>
+      <p style="margin-top:0;margin-bottom:14px;font-size:0.88rem;color:#9ca3af;">
+        Cette zone est réservée à l'enseignant. Entrez le mot de passe admin.
+      </p>
+      <input type="password" id="adminPassword" placeholder="Mot de passe" style="
+        width:100%;
+        padding:9px 11px;
+        border-radius:999px;
+        border:1px solid #1f2937;
+        background:#020617;
+        color:#e5e7eb;
+        outline:none;
+        margin-bottom:10px;
+      ">
+      <button id="loginBtn" class="btn-primary" style="width:100%;justify-content:center;">Se connecter</button>
+      <p id="loginError" style="margin:10px 0 0;font-size:0.8rem;color:#fecaca;display:none;">
+        Mot de passe incorrect.
+      </p>
+    </div>
+  </div>
+
+  <main class="app-main" id="adminMain" style="display:none;">
+    <section class="toolbar" style="margin-bottom:20px;">
+      <div class="toolbar-group">
+        <span>Nouvelle application</span>
+        <p style="margin:0;font-size:0.8rem;color:#9ca3af;">
+          Remplis le formulaire ci-dessous pour ajouter une application (EPS, Maths, Langues, etc.).
+        </p>
+      </div>
+      <div class="toolbar-group" style="text-align:right;align-self:flex-end;">
+        <button id="exportBtn" class="btn-outline">Télécharger apps.json</button>
+      </div>
+    </section>
+
+    <section style="
+      background:#020617;
+      border-radius:18px;
+      padding:16px 16px 12px;
+      border:1px solid rgba(148,163,184,0.2);
+      margin-bottom:18px;
+    ">
+      <form id="appForm" autocomplete="off" style="display:grid;grid-template-columns:1.4fr 1fr;gap:10px 12px;">
+        <div>
+          <label>
+            <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Nom de l'application</span>
+            <input type="text" id="appName" required placeholder="Défi Maths, Fiche Texte..." />
+          </label>
+        </div>
+        <div>
+          <label>
+            <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Matière / catégorie</span>
+            <input type="text" id="appCategory" placeholder="EPS, Maths, Français, Anglais..." />
+          </label>
+        </div>
+        <div>
+          <label>
+            <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">URL de l'application</span>
+            <input type="url" id="appUrl" required placeholder="https://eps-barletta.github.io/mon-app/" />
+          </label>
+        </div>
+        <div>
+          <label>
+            <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Icône (emoji)</span>
+            <input type="text" id="appIcon" placeholder="🧮, 🏃‍♂️, 🎧..." />
+          </label>
+        </div>
+        <div style="grid-column:1 / -1;">
+          <label>
+            <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Description</span>
+            <textarea id="appDescription" rows="2" placeholder="Description courte de l'application (objectif, public, etc.)" style="
+              width:100%;
+              padding:9px 11px;
+              border-radius:12px;
+              border:1px solid #1f2937;
+              background:#020617;
+              color:#e5e7eb;
+              resize:vertical;
+              font-family:inherit;
+              font-size:0.9rem;
+            "></textarea>
+          </label>
+        </div>
+        <div style="grid-column:1 / -1;text-align:right;">
+          <button type="submit" class="btn-primary">Ajouter l'application</button>
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2 style="font-size:1rem;margin-bottom:8px;">Applications existantes</h2>
+      <p style="margin-top:0;margin-bottom:10px;font-size:0.82rem;color:#9ca3af;">
+        Ces données viennent de <code>data/apps.json</code>. Après modifications, pense à télécharger le nouveau fichier et le remettre dans GitHub.
+      </p>
+      <div id="appsAdminList" style="display:flex;flex-direction:column;gap:8px;"></div>
