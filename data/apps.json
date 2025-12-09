@@ -38,5 +38,13 @@
     "category": "EPS",
     "icon": "👀",
     "description": "Analyse des performances en EPS et suivi des élèves."
+  },
+  {
+    "id": 6,
+    "name": "ArcAthlon",
+    "category": "EPS",
+    "url": "https://eps-barletta.github.io/ArcAthlon-/",
+    "icon": "🏹",
+    "description": "Arcathlon est une application EPS pour chronométrer la course, compter les tours et enregistrer les scores de tir à l’arc. Compatible ScanProf, elle propose aussi des conseils pour aider l’observateur à guider efficacement son coureur."
   }
 ]
