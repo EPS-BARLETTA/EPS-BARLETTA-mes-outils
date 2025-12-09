@@ -3,19 +3,19 @@
 --------------------------------------------------------- */
 
 // Mot de passe admin
-const ADMIN_PASSWORD = "dok76B46";   // 🔒 Ton mot de passe
-let githubToken = "";                // Stocke le token GitHub entré au login
+const ADMIN_PASSWORD = "dok76B46";   // 🔒 Ton mot de passe admin
+let githubToken = "";                // Token GitHub saisi au login
 
-// Repo GitHub pour push apps.json
+// Repo GitHub de ton portail
 const GITHUB_USER = "EPS-BARLETTA";
 const GITHUB_REPO = "EPS-BARLETTA-mes-outils";
 const JSON_PATH = "data/apps.json";
 
-let apps = []; // Liste locale des apps
+let apps = []; // tableau des apps
 
 
 /* ---------------------------------------------------------
-   ÉLÉMENTS DOM
+   RÉCUPÉRATION DES ÉLÉMENTS DOM
 --------------------------------------------------------- */
 
 const loginOverlay = document.getElementById("loginOverlay");
@@ -29,15 +29,19 @@ const loginError = document.getElementById("loginError");
 const appForm = document.getElementById("appForm");
 const appsAdminList = document.getElementById("appsAdminList");
 
+// Champs du formulaire
 const appName = document.getElementById("appName");
 const appIcon = document.getElementById("appIcon");
 const appUrl = document.getElementById("appUrl");
+const appDescription = document.getElementById("appDescription");
 const appCA = document.getElementById("appCA");
 const appMatiere = document.getElementById("appMatiere");
 
+let editIndex = null; // index de l’app modifiée
+
 
 /* ---------------------------------------------------------
-   LOGIN
+   LOGIN ADMIN
 --------------------------------------------------------- */
 
 loginBtn.addEventListener("click", () => {
@@ -55,7 +59,7 @@ loginBtn.addEventListener("click", () => {
 
 
 /* ---------------------------------------------------------
-   CHARGEMENT apps.json DEPUIS GITHUB
+   CHARGER apps.json DEPUIS GITHUB
 --------------------------------------------------------- */
 
 function loadAppsFromGitHub() {
@@ -66,19 +70,19 @@ function loadAppsFromGitHub() {
       renderAdminList();
     })
     .catch(err => {
-      console.error("Erreur lors du chargement apps.json :", err);
+      console.error("Erreur chargement apps.json :", err);
       appsAdminList.innerHTML = `<p class="error">Impossible de charger apps.json</p>`;
     });
 }
 
 
 /* ---------------------------------------------------------
-   AFFICHAGE DES APPS DANS L'ADMIN
+   AFFICHAGE DES APPS DANS L’ADMIN
 --------------------------------------------------------- */
 
 function renderAdminList() {
   if (!apps.length) {
-    appsAdminList.innerHTML = `<p>Aucune application pour le moment.</p>`;
+    appsAdminList.innerHTML = `<p>Aucune application enregistrée.</p>`;
     return;
   }
 
@@ -86,9 +90,13 @@ function renderAdminList() {
     .map((app, index) => {
       return `
         <div class="app-card admin-app-card">
+
           <div class="app-card-icon">${app.icon || "📚"}</div>
+
           <div class="app-card-body">
             <h2>${app.name}</h2>
+
+            <p><strong>Description :</strong> ${app.description || "Aucune"}</p>
             <p><strong>URL :</strong> ${app.url}</p>
             <p><strong>CA :</strong> ${app.category || "Aucune"}</p>
             <p><strong>Matière :</strong> ${app.matiere || "Aucune"}</p>
@@ -96,6 +104,7 @@ function renderAdminList() {
             <button class="btn-outline" onclick="editApp(${index})">Modifier</button>
             <button class="btn-primary" style="background:#b91c1c" onclick="deleteApp(${index})">Supprimer</button>
           </div>
+          
         </div>
       `;
     })
@@ -104,10 +113,8 @@ function renderAdminList() {
 
 
 /* ---------------------------------------------------------
-   AJOUT / MODIFICATION D'UNE APP
+   AJOUT OU MODIFICATION D'UNE APP
 --------------------------------------------------------- */
-
-let editIndex = null;
 
 appForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -116,8 +123,9 @@ appForm.addEventListener("submit", (e) => {
     name: appName.value.trim(),
     icon: appIcon.value.trim(),
     url: appUrl.value.trim(),
-    category: appCA.value.trim(),     // CA1–CA5 ou ""
-    matiere: appMatiere.value.trim(), // Matière ou ""
+    description: appDescription.value.trim(),
+    category: appCA.value.trim(),     // CA1..CA5 ou ""
+    matiere: appMatiere.value.trim()  // Matière ou ""
   };
 
   if (editIndex === null) {
@@ -143,7 +151,7 @@ function deleteApp(index) {
 
 
 /* ---------------------------------------------------------
-   ÉDITION D’UNE APP (remplit le formulaire)
+   ÉDITION D’UNE APP (remplissage formulaire)
 --------------------------------------------------------- */
 
 function editApp(index) {
@@ -153,6 +161,7 @@ function editApp(index) {
   appName.value = app.name;
   appIcon.value = app.icon;
   appUrl.value = app.url;
+  appDescription.value = app.description || "";
   appCA.value = app.category || "";
   appMatiere.value = app.matiere || "";
 
@@ -161,13 +170,13 @@ function editApp(index) {
 
 
 /* ---------------------------------------------------------
-   ENREGISTRER apps.json SUR GITHUB VIA API
+   ENREGISTRER apps.json SUR GITHUB (API GitHub)
 --------------------------------------------------------- */
 
 async function saveToGitHub() {
   const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${JSON_PATH}`;
 
-  // Récupérer le SHA du fichier
+  // Récupérer le SHA du fichier actuel
   const fileInfo = await fetch(url).then(r => r.json());
   const sha = fileInfo.sha;
 
@@ -192,6 +201,6 @@ async function saveToGitHub() {
     alert("Mise à jour réussie !");
     loadAppsFromGitHub();
   } else {
-    alert("Erreur lors de l'enregistrement sur GitHub.");
+    alert("Erreur lors de l'enregistrement GitHub.");
   }
 }
