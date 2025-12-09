@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>EPS • Compétences Officielles</title>
+  <title>EPS • Compétences & Outils</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,12 +11,13 @@
 
 <header class="app-header">
   <div class="brand">
-    <div class="logo-circle">EB</div>
+    <div class="logo-circle">EPS</div>
     <div>
-      <h1>EPS • Compétences Officielles</h1>
-      <p>Choisissez une compétence pour voir les applications associées.</p>
+      <h1>Éducation Physique et Sportive</h1>
+      <p>Applications classées par compétences professionnelles.</p>
     </div>
   </div>
+
   <nav class="header-actions">
     <a href="index.html" class="btn-outline">Accueil</a>
   </nav>
@@ -24,51 +25,45 @@
 
 <main class="app-main">
 
-  <section class="ca-section">
-    <div class="ca-grid">
+  <section class="eps-grid">
 
-      <a href="eps-ca1.html" class="ca-card ca-link">
-        <div class="ca-icon">CA1</div>
-        <h3>Réaliser une performance motrice mesurable à une échéance donnée</h3>
-      </a>
+    <a href="eps-ca1.html" class="eps-card eps-ca1">
+      <h2>CA1</h2>
+      <p>Réaliser une performance mesurable.</p>
+    </a>
 
-      <a href="eps-ca2.html" class="ca-card ca-link">
-        <div class="ca-icon">CA2</div>
-        <h3>Adapter ses déplacements à des environnements variés</h3>
-      </a>
+    <a href="eps-ca2.html" class="eps-card eps-ca2">
+      <h2>CA2</h2>
+      <p>Adapter ses déplacements à différents environnements.</p>
+    </a>
 
-      <a href="eps-ca3.html" class="ca-card ca-link">
-        <div class="ca-icon">CA3</div>
-        <h3>Réaliser une prestation corporelle à visée artistique ou acrobatique</h3>
-      </a>
+    <a href="eps-ca3.html" class="eps-card eps-ca3">
+      <h2>CA3</h2>
+      <p>Coopérer et s’opposer individuellement ou collectivement.</p>
+    </a>
 
-      <a href="eps-ca4.html" class="ca-card ca-link">
-        <div class="ca-icon">CA4</div>
-        <h3>Conduire et maîtriser un affrontement individuel ou collectif</h3>
-      </a>
+    <a href="eps-ca4.html" class="eps-card eps-ca4">
+      <h2>CA4</h2>
+      <p>Conduire et maîtriser des affrontements.</p>
+    </a>
 
-      <a href="eps-ca5.html" class="ca-card ca-link">
-        <div class="ca-icon">CA5</div>
-        <h3>Réaliser et orienter son activité physique en vue du développement et de l’entretien de soi</h3>
-      </a>
+    <a href="eps-ca5.html" class="eps-card eps-ca5">
+      <h2>CA5</h2>
+      <p>S’exprimer devant les autres par une prestation artistique.</p>
+    </a>
 
-    </div>
+    <a href="eps-outils.html" class="eps-card eps-outils">
+      <h2>Outils EPS</h2>
+      <p>Applications transversales pour l’enseignant.</p>
+    </a>
+
   </section>
 
 </main>
 
 <footer class="app-footer">
-  <p>EPS-BARLETTA • Applications Web Pédagogiques</p>
+  <p>EPS-BARLETTA • Portail d’applications web pédagogiques</p>
 </footer>
-
-<script>
-  // Gestion du mode sombre / clair (si utilisé sur la landing)
-  const stored = localStorage.getItem("eps-theme");
-  if (stored === "light") {
-    document.body.classList.remove("theme-dark");
-    document.body.classList.add("theme-light");
-  }
-</script>
 
 </body>
 </html>
