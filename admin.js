@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------
-   CONFIG
+   CONFIGURATION
 --------------------------------------------------------- */
 
 const ADMIN_PASSWORD = "dok76B46";
@@ -13,7 +13,7 @@ let apps = [];
 
 
 /* ---------------------------------------------------------
-   ÉLÉMENTS DOM
+   ELEMENTS DOM
 --------------------------------------------------------- */
 
 const loginOverlay = document.getElementById("loginOverlay");
@@ -56,7 +56,7 @@ loginBtn.addEventListener("click", () => {
 
 
 /* ---------------------------------------------------------
-   CHARGEMENT APPS.JSON
+   CHARGER apps.json
 --------------------------------------------------------- */
 
 function loadAppsFromGitHub() {
@@ -70,7 +70,7 @@ function loadAppsFromGitHub() {
 
 
 /* ---------------------------------------------------------
-   AFFICHAGE LISTE ADMIN
+   AFFICHAGE LISTE
 --------------------------------------------------------- */
 
 function renderAdminList() {
@@ -79,44 +79,42 @@ function renderAdminList() {
     return;
   }
 
-  appsAdminList.innerHTML = apps
-    .map((app, index) => `
-      <div class="app-card admin-app-card">
-        <div class="app-card-icon">${app.icon || "📚"}</div>
-        <div class="app-card-body">
-          <h2>${app.name}</h2>
-          <p><strong>Description :</strong> ${app.description || "Aucune"}</p>
-          <p><strong>URL :</strong> ${app.url}</p>
-          <p><strong>CA :</strong> ${app.category || "Aucune"}</p>
-          <p><strong>Matière :</strong> ${app.matiere || "Aucune"}</p>
+  appsAdminList.innerHTML = apps.map((app, index) => `
+    <div class="app-card admin-app-card">
 
-          <button class="btn-outline" onclick="editApp(${index})">Modifier</button>
-          <button class="btn-primary" style="background:#b91c1c" onclick="deleteApp(${index})">Supprimer</button>
-        </div>
+      <div class="app-card-icon">${app.icon || "📚"}</div>
+
+      <div class="app-card-body">
+        <h2>${app.name}</h2>
+
+        <p><strong>Description :</strong> ${app.description || "Aucune"}</p>
+        <p><strong>URL :</strong> ${app.url}</p>
+        <p><strong>Catégorie :</strong> ${app.category || "Aucune"}</p>
+        <p><strong>Matière :</strong> ${app.matiere || "Aucune"}</p>
+
+        <button class="btn-outline" onclick="editApp(${index})">Modifier</button>
+        <button class="btn-primary" style="background:#b91c1c" onclick="deleteApp(${index})">Supprimer</button>
       </div>
-    `)
-    .join("");
+
+    </div>
+  `).join("");
 }
 
 
 /* ---------------------------------------------------------
-   AJOUT / MODIFICATION APP
+   AJOUT / MODIFICATION
 --------------------------------------------------------- */
 
 appForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  // AUTOMATISATION : hors EPS = category vide
-  let categoryValue = appCA.value.trim();
-  if (categoryValue === "") categoryValue = "";
 
   const newApp = {
     name: appName.value.trim(),
     icon: appIcon.value.trim(),
     url: appUrl.value.trim(),
     description: appDescription.value.trim(),
-    category: categoryValue,              // "" = autres matières
-    matiere: appMatiere.value.trim()      // facultatif
+    category: appCA.value.trim(),   // CA1–CA5 ou EPS-OUTILS ou ""
+    matiere: appMatiere.value.trim()
   };
 
   if (editIndex === null) {
@@ -131,18 +129,7 @@ appForm.addEventListener("submit", (e) => {
 
 
 /* ---------------------------------------------------------
-   SUPPRIMER APP
---------------------------------------------------------- */
-
-function deleteApp(index) {
-  if (!confirm("Supprimer cette application ?")) return;
-  apps.splice(index, 1);
-  saveToGitHub();
-}
-
-
-/* ---------------------------------------------------------
-   MODIFIER APP
+   MODIFIER
 --------------------------------------------------------- */
 
 function editApp(index) {
@@ -159,7 +146,18 @@ function editApp(index) {
 
 
 /* ---------------------------------------------------------
-   ENREGISTRER SUR GITHUB
+   SUPPRIMER
+--------------------------------------------------------- */
+
+function deleteApp(index) {
+  if (!confirm("Supprimer cette application ?")) return;
+  apps.splice(index, 1);
+  saveToGitHub();
+}
+
+
+/* ---------------------------------------------------------
+   SAUVEGARDE SUR GITHUB
 --------------------------------------------------------- */
 
 async function saveToGitHub() {
