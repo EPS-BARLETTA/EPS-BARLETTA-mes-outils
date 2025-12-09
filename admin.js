@@ -1,8 +1,7 @@
 // admin.js
 // Espace administrateur : login + gestion apps + export JSON
 
-const ADMIN_PASSWORD = "ton-mot-de-passe-ici"; // 🔒 À CHANGER !
-
+const ADMIN_PASSWORD = "dok76B46"; // 🔒 Mot de passe admin défini
 const loginOverlay = document.getElementById("loginOverlay");
 const adminMain = document.getElementById("adminMain");
 const adminPasswordInput = document.getElementById("adminPassword");
