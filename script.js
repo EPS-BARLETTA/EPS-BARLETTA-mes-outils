@@ -1,61 +1,48 @@
-// script.js
-// Charge apps.json (avec anti-cache) et construit la grille d'applications + filtres
+/* ---------------------------------------------------------
+   SCRIPT GLOBAL POUR TOUTES LES PAGES
+   - Chargement apps.json (avec anti-cache)
+   - Dispatch CA1 → CA5
+   - Gestion Autres matières
+   - Injection dans les pages
+--------------------------------------------------------- */
 
 let apps = [];
-let filteredApps = [];
 
-const appsGrid = document.getElementById("appsGrid");
-const searchInput = document.getElementById("searchInput");
-const typeFilter = document.getElementById("typeFilter");
-
-// Charger les données avec anti-cache
-fetch("data/apps.json?v=" + Date.now())
-  .then(res => res.json())
-  .then(data => {
-    // on enrichit les apps avec un "type" dérivé
-    apps = data.map(app => {
-      const cat = (app.category || "").toLowerCase();
-      const type = cat.includes("eps") ? "eps" : "autres";
-      return { ...app, _type: type };
+// Charger apps.json avec anti-cache
+function loadApps(callback) {
+  fetch("data/apps.json?v=" + Date.now())
+    .then(res => res.json())
+    .then(data => {
+      apps = data;
+      if (callback) callback();
+    })
+    .catch(err => {
+      console.error("Erreur de chargement apps.json :", err);
     });
+}
 
-    filteredApps = [...apps];
-    renderApps();
-  })
-  .catch(err => {
-    console.error("Erreur de chargement des apps.json :", err);
-    appsGrid.innerHTML = `<p class="error">Impossible de charger la liste des applications.</p>`;
-  });
+/* ---------------------------------------------------------
+   Fonction d'affichage d'une liste d'apps dans une page
+--------------------------------------------------------- */
+function renderApps(list, targetId) {
+  const container = document.getElementById(targetId);
 
-// Afficher les apps
-function renderApps() {
-  if (!filteredApps.length) {
-    appsGrid.innerHTML = `<p class="empty-state">Aucune application ne correspond à la recherche.</p>`;
+  if (!container) return;
+
+  if (!list.length) {
+    container.innerHTML = `<p class="empty-state">Aucune application disponible.</p>`;
     return;
   }
 
-  appsGrid.innerHTML = filteredApps
+  container.innerHTML = list
     .map(app => {
-      const typeLabel = app._type === "eps" ? "EPS" : "Autres matières";
-
       return `
         <article class="app-card enhanced-card">
           <div class="app-card-icon enhanced-icon">${app.icon || "📚"}</div>
           <div class="app-card-body">
-            <div class="app-card-header">
-              <h2>${app.name}</h2>
-              <div style="display:flex;gap:6px;align-items:center;">
-                <span class="badge enhanced-badge">${typeLabel}</span>
-                ${
-                  app.category && !app.category.toLowerCase().includes("eps")
-                    ? `<span class="category-pill">${app.category}</span>`
-                    : ""
-                }
-              </div>
-            </div>
-            <p class="app-card-desc">${app.description || ""}</p>
+            <h2 style="margin:0;font-size:1.1rem;">${app.name}</h2>
             <a href="${app.url}" target="_blank" class="btn-primary enhanced-button">
-              🚀 Ouvrir l'application
+              Ouvrir
             </a>
           </div>
         </article>
@@ -64,26 +51,37 @@ function renderApps() {
     .join("");
 }
 
-// Filtrer les apps
-function applyFilters() {
-  const q = (searchInput?.value || "").trim().toLowerCase();
-  const type = typeFilter?.value || "";
-
-  filteredApps = apps.filter(app => {
-    const text = `${app.name || ""} ${app.description || ""} ${app.category || ""}`.toLowerCase();
-
-    const matchText = q === "" || text.includes(q);
-    const matchType = !type || app._type === type;
-
-    return matchText && matchType;
+/* ---------------------------------------------------------
+   Charger les apps d'une CA : CA1, CA2, CA3, CA4, CA5
+--------------------------------------------------------- */
+function loadAppsForCategory(category, targetId) {
+  loadApps(() => {
+    const filtered = apps.filter(a => (a.category || "").toUpperCase() === category.toUpperCase());
+    renderApps(filtered, targetId);
   });
-
-  renderApps();
 }
 
-if (searchInput) {
-  searchInput.addEventListener("input", applyFilters);
+/* ---------------------------------------------------------
+   Charger les apps pour la page AUTRES MATIÈRES
+--------------------------------------------------------- */
+function loadAppsAutres(targetId) {
+  loadApps(() => {
+    const filtered = apps.filter(a => {
+      const cat = (a.category || "").toUpperCase();
+      return !["CA1", "CA2", "CA3", "CA4", "CA5"].includes(cat);
+    });
+
+    renderApps(filtered, targetId);
+  });
 }
-if (typeFilter) {
-  typeFilter.addEventListener("change", applyFilters);
-}
+
+/* ---------------------------------------------------------
+   Mode clair / sombre (utilisé sur toutes les pages)
+--------------------------------------------------------- */
+(function applyThemeIfNeeded() {
+  const stored = localStorage.getItem("eps-theme");
+  if (stored === "light") {
+    document.body.classList.remove("theme-dark");
+    document.body.classList.add("theme-light");
+  }
+})();
