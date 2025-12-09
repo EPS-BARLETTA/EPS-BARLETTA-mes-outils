@@ -74,16 +74,8 @@
     "name": "VMA-Mange plots",
     "icon": "🏃‍♀️🏃🏻‍♂️",
     "url": "https://eps-barletta.github.io/VMA-mange-plots/",
-    "description": "VMA-Mange-Plots est une application où les élèves choisissent un projet de course, défini en fonction de leur VMA et du pourcentage sollicité, sur des tranches de 1 min 30. Les plots franchis indiquent si le projet est atteint, avec un écart possible de 0,5 à 1 km/h. Un mode “fantôme / lièvre” permet de s’entraîner ou de s’évaluer, et un QR-code compatible ScanProf facilite la récupération du travail réalisé.",
+    "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre” et un QR-code ScanProf pour récupérer les résultats.",
     "category": "CA1",
-    "matiere": ""
-  },
-  {
-    "name": "chrono-Minuteur",
-    "icon": "🏃‍♀️🤸🏻‍♀️🎿🤺",
-    "url": "https://eps-barletta.github.io/Chrono-Minuteur-/chrono-simple.html",
-    "description": "Chrono‑Minuteur propose un chronomètre et un compte à rebours personnalisables pour gérer facilement vos séances.",
-    "category": "EPS-OUTILS",
     "matiere": ""
   }
 ]
