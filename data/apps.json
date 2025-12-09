@@ -85,5 +85,13 @@
     "description": "Chrono‑Intervalles EPS permet de prendre des temps intermédiaires, d’afficher le temps cumulé et la vitesse correspondante. Un QR‑code compatible ScanProf facilite la récupération des données.",
     "category": "CA1",
     "matiere": ""
+  },
+  {
+    "name": "Chrono minuteur",
+    "icon": "🏃‍♀️🏃🏻‍♂️🏃‍♀️",
+    "url": "https://eps-barletta.github.io/Chrono-Minuteur-/modes.html",
+    "description": "Chrono‑Minuteur (modes) propose un minuteur et un chronomètre multi‑mode : vous pouvez choisir entre un compte à rebours ou un chronomètre, personnaliser la durée ou le chronométrage, et gérer vos séances facilement.",
+    "category": "CA1",
+    "matiere": ""
   }
 ]
