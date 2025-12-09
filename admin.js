@@ -1,19 +1,26 @@
-// admin.js
-// Admin avec token GitHub : charge et met à jour data/apps.json dans le dépôt
+/* ---------------------------------------------------------
+   CONFIGURATION
+--------------------------------------------------------- */
 
-const ADMIN_PASSWORD = "dok76B46"; // mot de passe admin
+// Mot de passe admin
+const ADMIN_PASSWORD = "dok76B46";   // 🔒 Ton mot de passe
+let githubToken = "";                // Stocke le token GitHub entré au login
 
-// Repo GitHub à mettre à jour
-const GITHUB_OWNER = "EPS-BARLETTA";
+// Repo GitHub pour push apps.json
+const GITHUB_USER = "EPS-BARLETTA";
 const GITHUB_REPO = "EPS-BARLETTA-mes-outils";
-const GITHUB_BRANCH = "main";
-const GITHUB_FILE_PATH = "data/apps.json";
+const JSON_PATH = "data/apps.json";
 
-let githubToken = "";
-let githubFileSha = ""; // sha du fichier apps.json dans GitHub
+let apps = []; // Liste locale des apps
+
+
+/* ---------------------------------------------------------
+   ÉLÉMENTS DOM
+--------------------------------------------------------- */
 
 const loginOverlay = document.getElementById("loginOverlay");
 const adminMain = document.getElementById("adminMain");
+
 const adminPasswordInput = document.getElementById("adminPassword");
 const githubTokenInput = document.getElementById("githubTokenInput");
 const loginBtn = document.getElementById("loginBtn");
@@ -21,125 +28,73 @@ const loginError = document.getElementById("loginError");
 
 const appForm = document.getElementById("appForm");
 const appsAdminList = document.getElementById("appsAdminList");
-const exportBtn = document.getElementById("exportBtn");
-const syncBtn = document.getElementById("syncBtn");
 
-let apps = [];
+const appName = document.getElementById("appName");
+const appIcon = document.getElementById("appIcon");
+const appUrl = document.getElementById("appUrl");
+const appCA = document.getElementById("appCA");
+const appMatiere = document.getElementById("appMatiere");
 
-// --- Connexion admin + récupération token ---
-function doLogin() {
-  const pwd = adminPasswordInput.value.trim();
-  const token = githubTokenInput.value.trim();
 
-  if (pwd !== ADMIN_PASSWORD || !token) {
+/* ---------------------------------------------------------
+   LOGIN
+--------------------------------------------------------- */
+
+loginBtn.addEventListener("click", () => {
+  const pass = adminPasswordInput.value.trim();
+  githubToken = githubTokenInput.value.trim();
+
+  if (pass === ADMIN_PASSWORD && githubToken !== "") {
+    loginOverlay.style.display = "none";
+    adminMain.style.display = "block";
+    loadAppsFromGitHub();
+  } else {
     loginError.style.display = "block";
-    return;
-  }
-
-  githubToken = token;
-  loginError.style.display = "none";
-
-  // On masque l'overlay et on affiche l'admin
-  loginOverlay.style.display = "none";
-  adminMain.style.display = "block";
-
-  // Charger les apps directement depuis GitHub
-  loadAppsFromGitHub();
-}
-
-loginBtn.addEventListener("click", doLogin);
-adminPasswordInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    doLogin();
-  }
-});
-githubTokenInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    doLogin();
   }
 });
 
-// --- Utilitaires encodage base64 (UTF-8 safe) ---
-function toBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
 
-function fromBase64(str) {
-  return decodeURIComponent(escape(atob(str)));
-}
+/* ---------------------------------------------------------
+   CHARGEMENT apps.json DEPUIS GITHUB
+--------------------------------------------------------- */
 
-// --- Charger apps.json depuis GitHub ---
-async function loadAppsFromGitHub() {
-  appsAdminList.innerHTML = `<p class="empty-state">Chargement des applications depuis GitHub...</p>`;
-
-  try {
-    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}?ref=${GITHUB_BRANCH}`;
-
-    const res = await fetch(url, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${githubToken}`
-      }
-    });
-
-    if (res.status === 404) {
-      // Fichier absent : on part d'une liste vide
-      apps = [];
-      githubFileSha = "";
+function loadAppsFromGitHub() {
+  fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${JSON_PATH}?v=${Date.now()}`)
+    .then(res => res.json())
+    .then(data => {
+      apps = data;
       renderAdminList();
-      alert("apps.json n'existe pas encore dans le dépôt. Il sera créé à la première sauvegarde.");
-      return;
-    }
-
-    if (!res.ok) {
-      throw new Error("Erreur HTTP " + res.status);
-    }
-
-    const data = await res.json();
-    githubFileSha = data.sha;
-
-    const decoded = fromBase64(data.content.replace(/\n/g, ""));
-    apps = JSON.parse(decoded);
-
-    renderAdminList();
-  } catch (err) {
-    console.error("Erreur lors du chargement depuis GitHub :", err);
-    appsAdminList.innerHTML = `<p class="error">Impossible de charger apps.json depuis GitHub. Vérifie ton token et les droits sur le dépôt.</p>`;
-  }
+    })
+    .catch(err => {
+      console.error("Erreur lors du chargement apps.json :", err);
+      appsAdminList.innerHTML = `<p class="error">Impossible de charger apps.json</p>`;
+    });
 }
 
-// --- Afficher la liste des apps ---
+
+/* ---------------------------------------------------------
+   AFFICHAGE DES APPS DANS L'ADMIN
+--------------------------------------------------------- */
+
 function renderAdminList() {
   if (!apps.length) {
-    appsAdminList.innerHTML = `<p class="empty-state">Aucune application pour le moment.</p>`;
+    appsAdminList.innerHTML = `<p>Aucune application pour le moment.</p>`;
     return;
   }
 
   appsAdminList.innerHTML = apps
-    .map(app => {
+    .map((app, index) => {
       return `
-        <div class="app-card" style="padding:10px 12px;">
-          <div class="app-card-icon" style="min-width:44px;height:44px;border-radius:14px;font-size:1.3rem;">
-            ${app.icon || "📚"}
-          </div>
+        <div class="app-card admin-app-card">
+          <div class="app-card-icon">${app.icon || "📚"}</div>
+          <div class="app-card-body">
+            <h2>${app.name}</h2>
+            <p><strong>URL :</strong> ${app.url}</p>
+            <p><strong>CA :</strong> ${app.category || "Aucune"}</p>
+            <p><strong>Matière :</strong> ${app.matiere || "Aucune"}</p>
 
-          <div class="app-card-body" style="gap:4px;">
-            <div class="app-card-header">
-              <h2 style="font-size:0.95rem;">${app.name}</h2>
-              ${app.category ? `<span class="badge">${app.category}</span>` : ""}
-            </div>
-
-            <p class="app-card-desc" style="font-size:0.8rem;">${app.description || ""}</p>
-
-            <p style="margin:0;font-size:0.78rem;color:#6b7280;word-break:break-all;">
-              <code>${app.url}</code>
-            </p>
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:4px;align-self:center;">
-            <button class="btn-danger" onclick="deleteApp(${app.id})">Supprimer</button>
+            <button class="btn-outline" onclick="editApp(${index})">Modifier</button>
+            <button class="btn-primary" style="background:#b91c1c" onclick="deleteApp(${index})">Supprimer</button>
           </div>
         </div>
       `;
@@ -147,116 +102,96 @@ function renderAdminList() {
     .join("");
 }
 
-// --- Sauvegarder apps.json dans GitHub ---
-async function saveAppsToGitHub(showAlert = true) {
-  if (!githubToken) {
-    alert("Token GitHub manquant. Recharge la page et reconnecte-toi.");
-    return;
-  }
 
-  const json = JSON.stringify(apps, null, 2);
-  const contentBase64 = toBase64(json);
+/* ---------------------------------------------------------
+   AJOUT / MODIFICATION D'UNE APP
+--------------------------------------------------------- */
 
-  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
+let editIndex = null;
 
-  const body = {
-    message: "Mise à jour apps.json depuis l'admin web",
-    content: contentBase64,
-    branch: GITHUB_BRANCH
-  };
-
-  if (githubFileSha) {
-    body.sha = githubFileSha;
-  }
-
-  try {
-    const res = await fetch(url, {
-      method: "PUT",
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${githubToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) {
-      const txt = await res.text();
-      console.error("Réponse GitHub non OK :", res.status, txt);
-      alert("Erreur lors de la sauvegarde sur GitHub.\nCode: " + res.status + "\nDétails: " + txt);
-      return;
-    }
-
-    const data = await res.json();
-    githubFileSha = data.content.sha;
-
-    if (showAlert) {
-      alert("✅ Sauvegarde effectuée sur GitHub !\nLa page publique est à jour.");
-    }
-  } catch (err) {
-    console.error("Erreur lors de la sauvegarde sur GitHub :", err);
-    alert("Erreur réseau lors de la sauvegarde sur GitHub.");
-  }
-}
-
-// --- Ajouter une app ---
-appForm.addEventListener("submit", async e => {
+appForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("appName").value.trim();
-  const category = document.getElementById("appCategory").value.trim();
-  const url = document.getElementById("appUrl").value.trim();
-  const icon = document.getElementById("appIcon").value.trim() || "📚";
-  const description = document.getElementById("appDescription").value.trim();
+  const newApp = {
+    name: appName.value.trim(),
+    icon: appIcon.value.trim(),
+    url: appUrl.value.trim(),
+    category: appCA.value.trim(),     // CA1–CA5 ou ""
+    matiere: appMatiere.value.trim(), // Matière ou ""
+  };
 
-  if (!name || !url) {
-    alert("Nom et URL obligatoires.");
-    return;
+  if (editIndex === null) {
+    apps.push(newApp);
+  } else {
+    apps[editIndex] = newApp;
+    editIndex = null;
   }
 
-  const maxId = apps.reduce((m, a) => Math.max(m, a.id || 0), 0);
+  saveToGitHub();
+});
 
-  apps.push({
-    id: maxId + 1,
-    name,
-    category,
-    url,
-    icon,
-    description
+
+/* ---------------------------------------------------------
+   SUPPRESSION D’UNE APP
+--------------------------------------------------------- */
+
+function deleteApp(index) {
+  if (!confirm("Supprimer cette application ?")) return;
+  apps.splice(index, 1);
+  saveToGitHub();
+}
+
+
+/* ---------------------------------------------------------
+   ÉDITION D’UNE APP (remplit le formulaire)
+--------------------------------------------------------- */
+
+function editApp(index) {
+  const app = apps[index];
+  editIndex = index;
+
+  appName.value = app.name;
+  appIcon.value = app.icon;
+  appUrl.value = app.url;
+  appCA.value = app.category || "";
+  appMatiere.value = app.matiere || "";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+/* ---------------------------------------------------------
+   ENREGISTRER apps.json SUR GITHUB VIA API
+--------------------------------------------------------- */
+
+async function saveToGitHub() {
+  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${JSON_PATH}`;
+
+  // Récupérer le SHA du fichier
+  const fileInfo = await fetch(url).then(r => r.json());
+  const sha = fileInfo.sha;
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(apps, null, 2))));
+
+  const body = {
+    message: "Mise à jour apps.json via admin",
+    content: content,
+    sha: sha
+  };
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Authorization": `token ${githubToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
   });
 
-  appForm.reset();
-  renderAdminList();
-
-  // Sauvegarde automatique sur GitHub
-  await saveAppsToGitHub(false);
-  alert("✅ Application ajoutée et publiée sur GitHub.");
-});
-
-// --- Supprimer une app ---
-window.deleteApp = async function (id) {
-  if (!confirm("Supprimer cette application ?")) return;
-  apps = apps.filter(app => app.id !== id);
-  renderAdminList();
-  await saveAppsToGitHub(false);
-  alert("✅ Application supprimée et mise à jour sur GitHub.");
-};
-
-// --- Télécharger apps.json (backup local) ---
-exportBtn.addEventListener("click", () => {
-  const json = JSON.stringify(apps, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "apps.json";
-  a.click();
-
-  URL.revokeObjectURL(url);
-});
-
-// --- Bouton de sauvegarde manuelle GitHub ---
-syncBtn.addEventListener("click", () => {
-  saveAppsToGitHub(true);
-});
+  if (res.ok) {
+    alert("Mise à jour réussie !");
+    loadAppsFromGitHub();
+  } else {
+    alert("Erreur lors de l'enregistrement sur GitHub.");
+  }
+}
