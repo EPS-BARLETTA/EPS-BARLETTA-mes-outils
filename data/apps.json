@@ -69,5 +69,13 @@
     "description": "AcroJuge est une application qui aide les élèves à exercer leur rôle d’observateur en évaluant le travail acrobatique de leurs pairs",
     "category": "CA3",
     "matiere": ""
+  },
+  {
+    "name": "VMA-Mange plots",
+    "icon": "🏃‍♀️🏃🏻‍♂️",
+    "url": "https://eps-barletta.github.io/VMA-mange-plots/",
+    "description": "VMA-Mange-Plots est une application où les élèves choisissent un projet de course, défini en fonction de leur VMA et du pourcentage sollicité, sur des tranches de 1 min 30. Les plots franchis indiquent si le projet est atteint, avec un écart possible de 0,5 à 1 km/h. Un mode “fantôme / lièvre” permet de s’entraîner ou de s’évaluer, et un QR-code compatible ScanProf facilite la récupération du travail réalisé.",
+    "category": "CA1",
+    "matiere": ""
   }
 ]
