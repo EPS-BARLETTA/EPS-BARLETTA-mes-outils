@@ -61,5 +61,13 @@
     "description": "Game-Maths est une application web qui propose des jeux de calcul mental rapides et interactifs. Elle permet d’entraîner les élèves, de suivre leurs résultats et de rendre la pratique des mathématiques plus ludique.",
     "category": "",
     "matiere": ""
+  },
+  {
+    "name": "AcroJuge",
+    "icon": "🤸🏻‍♂️",
+    "url": "https://eps-barletta.github.io/AcroJuge/",
+    "description": "AcroJuge est une application qui aide les élèves à exercer leur rôle d’observateur en évaluant le travail acrobatique de leurs pairs",
+    "category": "CA3",
+    "matiere": ""
   }
 ]
