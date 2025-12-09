@@ -77,5 +77,13 @@
     "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre” et un QR-code ScanProf pour récupérer les résultats.",
     "category": "CA1",
     "matiere": ""
+  },
+  {
+    "name": "Chrono Minuteur",
+    "icon": "🏃‍♀️🤸🏻‍♀️🤺🧗‍♀️",
+    "url": "https://eps-barletta.github.io/Chrono-Minuteur-/index.html",
+    "description": "Chrono‑Minuteur propose un chronomètre et un compte à rebours personnalisables pour gérer facilement vos séances.",
+    "category": "EPS-OUTILS",
+    "matiere": ""
   }
 ]
