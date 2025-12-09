@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------
-   Chargement des applications
+   Chargement des applications (apps.json) avec anti-cache
 --------------------------------------------------------- */
 
 let apps = [];
@@ -10,12 +10,15 @@ function loadApps(callback) {
     .then(data => {
       apps = data;
       if (callback) callback();
+    })
+    .catch(err => {
+      console.error("Erreur chargement apps.json :", err);
     });
 }
 
 
 /* ---------------------------------------------------------
-   Affichage des apps
+   Affichage d'une liste d'apps dans un conteneur
 --------------------------------------------------------- */
 
 function renderApps(list, targetId) {
@@ -35,7 +38,6 @@ function renderApps(list, targetId) {
 
         <div class="app-card-body">
           <h2 class="app-name">${app.name}</h2>
-
           <p class="app-description">${app.description || ""}</p>
 
           <a href="${app.url}" target="_blank" class="btn-primary enhanced-button">
@@ -50,7 +52,7 @@ function renderApps(list, targetId) {
 
 
 /* ---------------------------------------------------------
-   Page CA (CA1 à CA5)
+   Pages CA (CA1 à CA5)
 --------------------------------------------------------- */
 
 function loadAppsForCategory(category, targetId) {
@@ -62,14 +64,26 @@ function loadAppsForCategory(category, targetId) {
 
 
 /* ---------------------------------------------------------
-   Page Autres Matières
+   Page Outils EPS (nouvelle catégorie EPS-OUTILS)
+--------------------------------------------------------- */
+
+function loadAppsOutils(targetId) {
+  loadApps(() => {
+    const filtered = apps.filter(a => (a.category || "").toUpperCase() === "EPS-OUTILS");
+    renderApps(filtered, targetId);
+  });
+}
+
+
+/* ---------------------------------------------------------
+   Page Autres matières
 --------------------------------------------------------- */
 
 function loadAppsAutres(targetId) {
   loadApps(() => {
     const filtered = apps.filter(a => {
       const cat = (a.category || "").toUpperCase();
-      return !["CA1", "CA2", "CA3", "CA4", "CA5"].includes(cat);
+      return !["CA1", "CA2", "CA3", "CA4", "CA5", "EPS-OUTILS"].includes(cat);
     });
     renderApps(filtered, targetId);
   });
@@ -77,7 +91,7 @@ function loadAppsAutres(targetId) {
 
 
 /* ---------------------------------------------------------
-   Mode sombre / clair
+   Mode clair / sombre
 --------------------------------------------------------- */
 
 (function applyTheme() {
