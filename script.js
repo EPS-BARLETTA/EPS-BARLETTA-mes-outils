@@ -6,35 +6,26 @@ let filteredApps = [];
 
 const appsGrid = document.getElementById("appsGrid");
 const searchInput = document.getElementById("searchInput");
-const categoryFilter = document.getElementById("categoryFilter");
+const typeFilter = document.getElementById("typeFilter");
 
 // Charger les données avec anti-cache
 fetch("data/apps.json?v=" + Date.now())
   .then(res => res.json())
   .then(data => {
-    apps = data;
+    // on enrichit les apps avec un "type" dérivé
+    apps = data.map(app => {
+      const cat = (app.category || "").toLowerCase();
+      const type = cat.includes("eps") ? "eps" : "autres";
+      return { ...app, _type: type };
+    });
+
     filteredApps = [...apps];
-    initCategoryFilter();
     renderApps();
   })
   .catch(err => {
     console.error("Erreur de chargement des apps.json :", err);
     appsGrid.innerHTML = `<p class="error">Impossible de charger la liste des applications.</p>`;
   });
-
-// Remplir la liste des catégories / matières
-function initCategoryFilter() {
-  const categories = Array.from(
-    new Set(apps.map(a => a.category).filter(Boolean))
-  ).sort();
-
-  categories.forEach(cat => {
-    const opt = document.createElement("option");
-    opt.value = cat;
-    opt.textContent = cat;
-    categoryFilter.appendChild(opt);
-  });
-}
 
 // Afficher les apps
 function renderApps() {
@@ -45,17 +36,26 @@ function renderApps() {
 
   appsGrid.innerHTML = filteredApps
     .map(app => {
+      const typeLabel = app._type === "eps" ? "EPS" : "Autres matières";
+
       return `
         <article class="app-card enhanced-card">
           <div class="app-card-icon enhanced-icon">${app.icon || "📚"}</div>
           <div class="app-card-body">
             <div class="app-card-header">
               <h2>${app.name}</h2>
-              ${app.category ? `<span class="badge enhanced-badge">${app.category}</span>` : ""}
+              <div style="display:flex;gap:6px;align-items:center;">
+                <span class="badge enhanced-badge">${typeLabel}</span>
+                ${
+                  app.category && !app.category.toLowerCase().includes("eps")
+                    ? `<span class="category-pill">${app.category}</span>`
+                    : ""
+                }
+              </div>
             </div>
             <p class="app-card-desc">${app.description || ""}</p>
             <a href="${app.url}" target="_blank" class="btn-primary enhanced-button">
-              🚀 Ouvrir
+              🚀 Ouvrir l'application
             </a>
           </div>
         </article>
@@ -66,18 +66,24 @@ function renderApps() {
 
 // Filtrer les apps
 function applyFilters() {
-  const q = searchInput.value.trim().toLowerCase();
-  const cat = categoryFilter.value;
+  const q = (searchInput?.value || "").trim().toLowerCase();
+  const type = typeFilter?.value || "";
 
   filteredApps = apps.filter(app => {
-    const text = `${app.name} ${app.description} ${app.category}`.toLowerCase();
+    const text = `${app.name || ""} ${app.description || ""} ${app.category || ""}`.toLowerCase();
+
     const matchText = q === "" || text.includes(q);
-    const matchCat = !cat || app.category === cat;
-    return matchText && matchCat;
+    const matchType = !type || app._type === type;
+
+    return matchText && matchType;
   });
 
   renderApps();
 }
 
-searchInput.addEventListener("input", applyFilters);
-categoryFilter.addEventListener("change", applyFilters);
+if (searchInput) {
+  searchInput.addEventListener("input", applyFilters);
+}
+if (typeFilter) {
+  typeFilter.addEventListener("change", applyFilters);
+}
