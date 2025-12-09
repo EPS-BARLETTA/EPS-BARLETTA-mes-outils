@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>EPS-BARLETTA • Portail d'applications</title>
+  <title>EPS Barletta • Applications Web Pédagogiques</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,8 +11,8 @@
     <div class="brand">
       <div class="logo-circle">EB</div>
       <div>
-        <h1>Portail d'apps pédagogiques</h1>
-        <p>EPS-BARLETTA • Outils pour l'EPS, les maths, les langues et plus encore.</p>
+        <h1>EPS-BARLETTA Apps</h1>
+        <p>Portail d'applications web pédagogiques.</p>
       </div>
     </div>
     <nav class="header-actions">
@@ -21,30 +21,107 @@
   </header>
 
   <main class="app-main">
-    <section class="toolbar">
-      <div class="toolbar-group">
-        <label>
-          <span>Recherche</span>
-          <input type="search" id="searchInput" placeholder="Nom, matière, description...">
-        </label>
+
+    <!-- HERO façon Apple -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-kicker">EPS Barletta • Applications Web Pédagogiques</p>
+        <h1 class="hero-title">Créer, mesurer, apprendre.</h1>
+        <p class="hero-subtitle">
+          Des outils innovants pour apprendre, progresser et enseigner autrement.
+          Toute ma boîte à outils numérique en un endroit.
+        </p>
+        <div class="hero-actions">
+          <a href="#appsSection" class="btn-primary">Explorer les applications</a>
+          <a href="#epsSkills" class="btn-outline">Voir les compétences EPS (CA1 à CA5)</a>
+        </div>
       </div>
-      <div class="toolbar-group">
-        <label>
-          <span>Matière</span>
-          <select id="categoryFilter">
-            <option value="">Toutes</option>
-          </select>
-        </label>
+
+      <div class="hero-highlight">
+        <h2>Mon terrain de jeu numérique</h2>
+        <p>EPS, évaluations, stats, QR-codes, générateurs d’outils…</p>
+        <ul>
+          <li>📌 Apps conçues pour la pratique de l’EPS</li>
+          <li>🧮 Expérimentations pour d'autres matières</li>
+          <li>🎯 Aligné sur les compétences officielles (CA1 à CA5)</li>
+        </ul>
       </div>
     </section>
 
-    <section id="appsGrid" class="apps-grid">
-      <!-- Cartes générées par script.js -->
+    <!-- COMPETENCES EPS (CA1 à CA5) -->
+    <section id="epsSkills" class="ca-section">
+      <h2>Compétences attendues en EPS</h2>
+      <p class="ca-intro">
+        Les applications EPS s’inscrivent dans le cadre des cinq compétences attendues du programme français.
+      </p>
+      <div class="ca-grid">
+        <article class="ca-card">
+          <div class="ca-icon">CA1</div>
+          <h3>Réaliser une performance motrice maximale, mesurable à une échéance donnée</h3>
+          <p>Course, relais, sauts, lancers… Suivre et mesurer les progrès des élèves.</p>
+        </article>
+        <article class="ca-card">
+          <div class="ca-icon">CA2</div>
+          <h3>Adapter ses déplacements à des environnements variés</h3>
+          <p>Parcours, orientation, milieu naturel… Gérer l’effort et la sécurité.</p>
+        </article>
+        <article class="ca-card">
+          <div class="ca-icon">CA3</div>
+          <h3>Réaliser une prestation corporelle à visée artistique ou acrobatique</h3>
+          <p>Gym, danse, acrosport… Construire des productions collectives et expressives.</p>
+        </article>
+        <article class="ca-card">
+          <div class="ca-icon">CA4</div>
+          <h3>Conduire et maîtriser un affrontement individuel ou collectif</h3>
+          <p>Sports collectifs et d’opposition… Coopérer, s’opposer, respecter les règles.</p>
+        </article>
+        <article class="ca-card">
+          <div class="ca-icon">CA5</div>
+          <h3>Réaliser et orienter son activité physique en vue du développement et de l’entretien de soi</h3>
+          <p>Condition physique, santé, bien-être… Devenir acteur de sa pratique.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION APPS -->
+    <section id="appsSection">
+      <div class="section-header">
+        <h2>Mes applications</h2>
+        <p>
+          Un ensemble d’outils numériques que je développe pour l’EPS et,
+          en expérimentation, pour d’autres disciplines.
+        </p>
+      </div>
+
+      <!-- Barre outils : recherche + filtre EPS / Autres -->
+      <section class="toolbar">
+        <div class="toolbar-group">
+          <label>
+            <span>Recherche</span>
+            <input type="search" id="searchInput" placeholder="Nom, usage, mots-clés..." />
+          </label>
+        </div>
+        <div class="toolbar-group">
+          <label>
+            <span>Type d’application</span>
+            <select id="typeFilter">
+              <option value="">Toutes</option>
+              <option value="eps">EPS</option>
+              <option value="autres">Autres matières</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- Grille des apps -->
+      <section id="appsGrid" class="apps-grid">
+        <!-- Cartes générées par script.js -->
+      </section>
     </section>
   </main>
 
   <footer class="app-footer">
-    <p>Créé par EPS-BARLETTA • Hébergé sur GitHub Pages</p>
+    <p>EPS-BARLETTA • Portail d’applications web pédagogiques • Développé et maintenu par J. Barletta</p>
   </footer>
 
   <script src="script.js"></script>
