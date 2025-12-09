@@ -5,91 +5,130 @@
   <title>EPS Barletta • Applications Web Pédagogiques</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ----- PAGE DE GARDE MODERNE ----- */
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .landing-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .landing-header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .landing-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 750px;
+    }
+
+    h1.landing-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .landing-subtitle {
+      font-size: 1.3rem;
+      color: #9ca3af;
+      margin-bottom: 25px;
+    }
+
+    .landing-phrase {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      margin-bottom: 40px;
+    }
+
+    .landing-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .landing-btn {
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .landing-footer {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 40px;
+      padding-bottom: 10px;
+    }
+
+  </style>
 </head>
 
 <body class="theme-dark">
 
-  <!-- HEADER -->
-  <header class="landing-header">
-    <div class="landing-brand">
-      <div class="landing-logo">EB</div>
-      <div class="landing-title-block">
-        <span class="landing-subtitle">EPS Barletta</span>
-        <span class="landing-title">Applications Web Pédagogiques</span>
-      </div>
-    </div>
+<div class="landing-container">
 
-    <div class="landing-actions">
-      <button id="themeToggle" class="btn-outline btn-compact" aria-label="Basculer mode clair/sombre">🌓</button>
-      <a href="admin.html" class="btn-outline btn-compact">Admin</a>
-    </div>
+  <!-- Bouton admin -->
+  <header class="landing-header">
+    <a href="admin.html" class="btn-outline btn-compact">Admin</a>
   </header>
 
-  <!-- PAGE CONTENT -->
+  <!-- Contenu central -->
   <main class="landing-main">
+    <h1 class="landing-title">EPS Barletta<br>Applications Web Pédagogiques</h1>
 
-    <section class="landing-hero">
-      <p class="hero-kicker">Créer, mesurer, apprendre.</p>
+    <div class="landing-subtitle">
+      Créer, mesurer, apprendre.
+    </div>
 
-      <h1 class="hero-main-title">
-        Toute ma boîte à outils numérique en un endroit.
-      </h1>
+    <div class="landing-phrase">
+      Une sélection d’outils numériques conçus et développés pour faciliter l’enseignement.
+    </div>
 
-      <p class="hero-subtitle">
-        Un ensemble d’applications web que je développe pour l’EPS et, en expérimentation,
-        pour d’autres disciplines.
-      </p>
-
-      <p class="hero-author">
-        Par <strong>Jérôme BARLETTA</strong>
-      </p>
-
-      <div class="landing-buttons">
-        <a href="eps.html" class="btn-primary landing-btn">EPS</a>
-        <a href="autres.html" class="btn-outline landing-btn">Autres matières</a>
-      </div>
-    </section>
-
+    <div class="landing-buttons">
+      <a href="eps.html" class="btn-primary landing-btn">EPS</a>
+      <a href="autres.html" class="btn-outline landing-btn">Autres matières</a>
+    </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- Pied de page -->
   <footer class="landing-footer">
-    <p>EPS-BARLETTA • Portail d’applications web pédagogiques</p>
+    EPS-BARLETTA • Portail d’applications web pédagogiques<br>
+    par <strong>Jérôme BARLETTA</strong>
   </footer>
 
+</div>
 
+<!-- Script mode clair/sombre -->
+<script>
+  const body = document.body;
+  const stored = localStorage.getItem("eps-theme");
 
-  <!-- SCRIPT MODE SOMBRE / CLAIR -->
-  <script>
-    const body = document.body;
-    const toggleBtn = document.getElementById("themeToggle");
-
-    function applyStoredTheme() {
-      const stored = localStorage.getItem("eps-theme");
-      if (stored === "light") {
-        body.classList.remove("theme-dark");
-        body.classList.add("theme-light");
-      } else {
-        body.classList.remove("theme-light");
-        body.classList.add("theme-dark");
-      }
-    }
-
-    function toggleTheme() {
-      if (body.classList.contains("theme-dark")) {
-        body.classList.remove("theme-dark");
-        body.classList.add("theme-light");
-        localStorage.setItem("eps-theme", "light");
-      } else {
-        body.classList.remove("theme-light");
-        body.classList.add("theme-dark");
-        localStorage.setItem("eps-theme", "dark");
-      }
-    }
-
-    applyStoredTheme();
-    toggleBtn.addEventListener("click", toggleTheme);
-  </script>
+  if (stored === "light") {
+    body.classList.add("theme-light");
+    body.classList.remove("theme-dark");
+  } else {
+    body.classList.add("theme-dark");
+    body.classList.remove("theme-light");
+  }
+</script>
 
 </body>
 </html>
