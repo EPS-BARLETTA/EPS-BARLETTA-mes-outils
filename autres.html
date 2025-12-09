@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Autres matières • Applications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="theme-dark">
+
+<header class="app-header">
+  <div class="brand">
+    <div class="logo-circle">AM</div>
+    <div>
+      <h1>Autres matières</h1>
+      <p>Applications expérimentales pour les disciplines hors EPS.</p>
+    </div>
+  </div>
+
+  <nav class="header-actions">
+    <a href="index.html" class="btn-outline">Accueil</a>
+  </nav>
+</header>
+
+<main class="app-main">
+
+  <section id="appsAutres" class="apps-grid">
+    <!-- Apps non EPS injectées automatiquement -->
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>EPS-BARLETTA • Applications Web Pédagogiques</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Charger les apps hors EPS (Autres matières)
+  loadAppsForCategory("AUTRES", "appsAutres");
+</script>
+
+</body>
+</html>
