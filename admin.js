@@ -2,6 +2,7 @@
 // Espace administrateur : login + gestion apps + export JSON
 
 const ADMIN_PASSWORD = "dok76B46"; // 🔒 Mot de passe admin défini
+
 const loginOverlay = document.getElementById("loginOverlay");
 const adminMain = document.getElementById("adminMain");
 const adminPasswordInput = document.getElementById("adminPassword");
@@ -15,7 +16,6 @@ const exportBtn = document.getElementById("exportBtn");
 let apps = [];
 
 // --- Login admin ---
-
 function doLogin() {
   const value = adminPasswordInput.value.trim();
   if (value === ADMIN_PASSWORD) {
@@ -35,7 +35,6 @@ adminPasswordInput.addEventListener("keydown", e => {
 });
 
 // --- Charger les apps ---
-
 fetch("data/apps.json")
   .then(res => res.json())
   .then(data => {
@@ -48,7 +47,6 @@ fetch("data/apps.json")
   });
 
 // --- Affichage liste admin ---
-
 function renderAdminList() {
   if (!apps.length) {
     appsAdminList.innerHTML = `<p class="empty-state">Aucune application pour le moment.</p>`;
@@ -69,3 +67,66 @@ function renderAdminList() {
             </div>
             <p class="app-card-desc" style="font-size:0.8rem;">${app.description || ""}</p>
             <p style="margin:0;font-size:0.78rem;color:#6b7280;word-break:break-all;">
+              <code>${app.url}</code>
+            </p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-self:center;">
+            <button class="btn-danger" onclick="deleteApp(${app.id})">Supprimer</button>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+// --- Ajouter une app ---
+appForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = document.getElementById("appName").value.trim();
+  const category = document.getElementById("appCategory").value.trim();
+  const url = document.getElementById("appUrl").value.trim();
+  const icon = document.getElementById("appIcon").value.trim() || "📚";
+  const description = document.getElementById("appDescription").value.trim();
+
+  if (!name || !url) {
+    alert("Nom et URL obligatoires.");
+    return;
+  }
+
+  const maxId = apps.reduce((m, a) => Math.max(m, a.id || 0), 0);
+  apps.push({
+    id: maxId + 1,
+    name,
+    category,
+    url,
+    icon,
+    description
+  });
+
+  appForm.reset();
+  renderAdminList();
+});
+
+// --- Supprimer une app ---
+function deleteApp(id) {
+  if (!confirm("Supprimer cette application ?")) return;
+  apps = apps.filter(a => a.id !== id);
+  renderAdminList();
+}
+
+// --- Exporter JSON ---
+exportBtn.addEventListener("click", () => {
+  const json = JSON.stringify(apps, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "apps.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  alert("apps.json téléchargé !");
+});
