@@ -4,7 +4,7 @@
     "name": "ScanProf",
     "url": "https://eps-barletta.github.io/ScanProf/",
     "icon": "📸",
-    "category": "",
+    "category": "EPS-OUTILS",
     "matiere": "Outil transversal",
     "description": "Scanner intelligent pour lire des QR Codes EPS."
   },
@@ -31,7 +31,7 @@
     "name": "CreaQRcode",
     "url": "https://eps-barletta.github.io/CreaQRcode/",
     "icon": "🔗",
-    "category": "",
+    "category": "EPS-OUTILS",
     "matiere": "Outil transversal",
     "description": "Création rapide de QR Codes pédagogiques."
   },
@@ -40,7 +40,7 @@
     "name": "EPS Observer",
     "url": "https://eps-barletta.github.io/EPS-Observer/",
     "icon": "👀",
-    "category": "",
+    "category": "EPS-OUTILS",
     "matiere": "Outil transversal",
     "description": "Outil d’observation et d’évaluation des élèves."
   },
@@ -54,6 +54,7 @@
     "description": "Suivi course-tir : chronos, tours et scores."
   },
   {
+    "id": 7,
     "name": "Défi mathématiques",
     "icon": "💡",
     "url": "https://eps-barletta.github.io/game-maths/",
