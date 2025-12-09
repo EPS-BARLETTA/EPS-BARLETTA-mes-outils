@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------
-   Chargement des applications (apps.json) avec anti-cache
+   Chargement des applications
 --------------------------------------------------------- */
 
 let apps = [];
@@ -10,15 +10,12 @@ function loadApps(callback) {
     .then(data => {
       apps = data;
       if (callback) callback();
-    })
-    .catch(err => {
-      console.error("Erreur chargement apps.json :", err);
     });
 }
 
 
 /* ---------------------------------------------------------
-   Affichage d'une liste d'apps dans un conteneur
+   Affichage des apps
 --------------------------------------------------------- */
 
 function renderApps(list, targetId) {
@@ -31,35 +28,29 @@ function renderApps(list, targetId) {
   }
 
   container.innerHTML = list
-    .map(app => {
-      return `
-        <article class="app-card enhanced-card">
+    .map(app => `
+      <article class="app-card enhanced-card">
 
-          <div class="app-card-icon enhanced-icon">${app.icon || "📚"}</div>
+        <div class="app-card-icon enhanced-icon">${app.icon || "📚"}</div>
 
-          <div class="app-card-body">
+        <div class="app-card-body">
+          <h2 class="app-name">${app.name}</h2>
 
-            <h2 class="app-name">${app.name}</h2>
+          <p class="app-description">${app.description || ""}</p>
 
-            <p class="app-description">
-              ${app.description || ""}
-            </p>
+          <a href="${app.url}" target="_blank" class="btn-primary enhanced-button">
+            Ouvrir
+          </a>
+        </div>
 
-            <a href="${app.url}" target="_blank" class="btn-primary enhanced-button">
-              Ouvrir
-            </a>
-
-          </div>
-
-        </article>
-      `;
-    })
+      </article>
+    `)
     .join("");
 }
 
 
 /* ---------------------------------------------------------
-   Charger seulement les apps d'une compétence EPS (CA1-CA5)
+   Page CA (CA1 à CA5)
 --------------------------------------------------------- */
 
 function loadAppsForCategory(category, targetId) {
@@ -71,7 +62,7 @@ function loadAppsForCategory(category, targetId) {
 
 
 /* ---------------------------------------------------------
-   Charger les apps hors EPS → Autres matières
+   Page Autres Matières
 --------------------------------------------------------- */
 
 function loadAppsAutres(targetId) {
@@ -80,14 +71,13 @@ function loadAppsAutres(targetId) {
       const cat = (a.category || "").toUpperCase();
       return !["CA1", "CA2", "CA3", "CA4", "CA5"].includes(cat);
     });
-
     renderApps(filtered, targetId);
   });
 }
 
 
 /* ---------------------------------------------------------
-   Mode clair / sombre (compatible toutes pages)
+   Mode sombre / clair
 --------------------------------------------------------- */
 
 (function applyTheme() {
