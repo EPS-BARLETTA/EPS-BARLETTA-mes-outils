@@ -1,426 +1,236 @@
-/* -----------------------------------------------------
-   STYLE GLOBAL — Thème moderne semi-dark façon Apple
------------------------------------------------------ */
+/* =========================================================
+   STYLE GLOBAL — MODE PREMIUM APPLE STYLE (Dark Mode)
+   EPS-BARLETTA — Portail d'applications pédagogiques
+   ========================================================= */
+
+/* ------------------------------
+   Reset + Fond général
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body.theme-dark {
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  background: #0f172a;
-  color: #e2e8f0;
-  -webkit-font-smoothing: antialiased;
+  background: #0f0f14;
+  color: #e5e5e7;
+  font-family: "Inter", "SF Pro Display", sans-serif;
+  line-height: 1.6;
 }
 
-/* Liens généraux */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* -----------------------------------------------------
-   HEADER
------------------------------------------------------ */
-
+/* ------------------------------
+   Header
+------------------------------ */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 26px;
-  background: #1e293b;
+  padding: 28px 24px;
+  background: rgba(255,255,255,0.03);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
 }
 
 .brand {
   display: flex;
+  gap: 16px;
   align-items: center;
-  gap: 12px;
 }
 
 .logo-circle {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  background: linear-gradient(145deg, #2e2e34, #1d1d22);
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: 700;
-  color: white;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .header-actions a {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
   text-decoration: none;
+  color: #fff;
+  transition: 0.2s;
 }
 
-/* -----------------------------------------------------
-   BUTTONS
------------------------------------------------------ */
+.header-actions a:hover {
+  background: rgba(255,255,255,0.1);
+}
 
+/* ------------------------------
+   Boutons Premium
+------------------------------ */
 .btn-primary {
-  padding: 10px 16px;
-  background: linear-gradient(90deg, #10b981, #34d399);
-  border: none;
+  background: linear-gradient(135deg, #007aff, #0051c7);
   color: white;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 10px;
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: transform .15s, box-shadow .2s;
   text-decoration: none;
+  margin-top: 8px;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(16,185,129,0.35);
-}
-
-.btn-outline {
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: transparent;
-  color: #e2e8f0;
-  cursor: pointer;
-  transition: background .2s, transform .15s;
-  font-weight: 500;
-}
-
-.btn-outline:hover {
-  background: rgba(255,255,255,0.06);
   transform: translateY(-2px);
 }
 
-.btn-danger {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background .2s;
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 9px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #e5e5e5;
+  transition: 0.2s;
 }
 
-.btn-danger:hover {
-  background: #dc2626;
+.btn-outline:hover {
+  background: rgba(255,255,255,0.1);
 }
 
-/* -----------------------------------------------------
-   MAIN
------------------------------------------------------ */
-
+/* ------------------------------
+   Structure générale
+------------------------------ */
 .app-main {
-  padding: 26px;
+  padding: 28px 24px;
 }
-
-/* -----------------------------------------------------
-   GRID APPS — Structure Apple-style
------------------------------------------------------ */
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* Carte app */
+/* ------------------------------
+   Cartes d'apps (pages CA, Outils, Autres)
+------------------------------ */
 .app-card {
+  background: #1a1a1f;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
   display: flex;
   gap: 16px;
-  padding: 18px;
-  border-radius: 18px;
-  background: #1e293b;
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: transform .2s, box-shadow .25s, border-color .25s;
-}
-
-/* Version premium */
-.enhanced-card {
-  background: linear-gradient(145deg, #1e293b, #0f172a);
-  border: 1px solid rgba(255,255,255,0.07);
+  transition: 0.2s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
 }
 
 .app-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-  border-color: rgba(96,165,250,0.4);
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
 }
 
-/* Icônes app */
-.app-card-icon,
-.enhanced-icon {
-  font-size: 2.4rem;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
-  transition: transform .2s;
+.app-card-icon {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
 }
 
-/* Effet icône */
-.app-card:hover .enhanced-icon {
-  transform: rotate(4deg) scale(1.1);
-}
-
-/* Texte app */
 .app-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex: 1;
 }
 
-.app-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app-card-header h2 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #f1f5f9;
-}
-
-.app-card-desc {
-  margin: 0;
-  font-size: .9rem;
-  color: #94a3b8;
-}
-
-/* Badge principal */
-.badge,
-.enhanced-badge {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: .75rem;
-  background: linear-gradient(90deg, #3b82f6, #06b6d4);
-  color: white;
-  box-shadow: 0 0 8px rgba(59,130,246,0.35);
-}
-
-/* Badge secondaire */
-.category-pill {
-  padding: 3px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(148,163,184,0.7);
-  font-size: 0.72rem;
-  color: #e5e7eb;
-}
-
-/* Bouton carte */
-.enhanced-button {
-  margin-top: 10px;
-  background: linear-gradient(90deg, #10b981, #34d399);
+/* Nom + description */
+.app-name {
+  font-size: 1.2rem;
   font-weight: 600;
-  border-radius: 12px;
-  transition: transform .15s, box-shadow .2s;
+  margin-bottom: 4px;
 }
 
-.enhanced-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(16,185,129,0.35);
+.app-description {
+  font-size: 0.9rem;
+  color: #bdbdc2;
+  margin-bottom: 10px;
 }
 
-/* -----------------------------------------------------
-   HERO (section Apple-style)
------------------------------------------------------ */
-
-.hero {
+/* ------------------------------
+   PAGE EPS : grille 2×3 premium
+------------------------------ */
+.eps-grid {
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
-  margin-bottom: 32px;
-  align-items: center;
 }
 
-.hero-kicker {
-  margin: 0;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #38bdf8;
-}
-
-.hero-title {
-  margin: 6px 0 8px;
-  font-size: clamp(2.1rem, 4vw, 2.6rem);
-  font-weight: 700;
-  color: #f9fafb;
-}
-
-.hero-subtitle {
-  margin: 0 0 16px;
-  font-size: 0.98rem;
-  color: #cbd5f5;
-  max-width: 36rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Bloc highlight */
-.hero-highlight {
-  background: radial-gradient(circle at top left, #1d4ed8 0, #020617 50%);
+/* Carte EPS principale */
+.eps-card {
+  padding: 32px 22px;
   border-radius: 22px;
-  padding: 18px 18px 16px;
-  border: 1px solid rgba(148,163,184,0.4);
-  box-shadow: 0 12px 30px rgba(15,23,42,0.8);
-  color: #e5e7eb;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.25s;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
 }
 
-.hero-highlight h2 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
+.eps-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
-.hero-highlight p {
-  margin: 0 0 10px;
-  font-size: 0.9rem;
-  color: #d1d5db;
+/* Titres CA */
+.eps-card h2 {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
 }
 
-.hero-highlight ul {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 0.9rem;
-  color: #cbd5f5;
+/* Sous-titre */
+.eps-card p {
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
-/* Responsive hero */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* ------------------------------
+   Couleurs pastel premium STYLE A
+------------------------------ */
+
+/* CA1 — bleu pastel */
+.eps-ca1 {
+  background: linear-gradient(135deg, #3b6ef5, #274b9f);
 }
 
-/* -----------------------------------------------------
-   COMPÉTENCES EPS (CA1 → CA5)
------------------------------------------------------ */
-
-.ca-section {
-  margin-bottom: 32px;
+/* CA2 — violet pastel */
+.eps-ca2 {
+  background: linear-gradient(135deg, #8d6cf7, #6149c2);
 }
 
-.ca-section h2 {
-  margin: 0 0 6px;
-  font-size: 1.4rem;
+/* CA3 — orange doux */
+.eps-ca3 {
+  background: linear-gradient(135deg, #f1a35b, #c37b39);
 }
 
-.ca-intro {
-  margin: 0 0 14px;
-  font-size: 0.9rem;
-  color: #9ca3af;
+/* CA4 — jaune pastel */
+.eps-ca4 {
+  background: linear-gradient(135deg, #e6c85c, #b79f3c);
 }
 
-.ca-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
+/* CA5 — vert pastel */
+.eps-ca5 {
+  background: linear-gradient(135deg, #55c492, #3a8f68);
 }
 
-.ca-card {
-  background: #111827;
-  border-radius: 18px;
-  padding: 14px 14px 12px;
-  border: 1px solid rgba(55,65,81,0.8);
+/* OUTILS EPS — neutre premium */
+.eps-outils {
+  background: linear-gradient(135deg, #4a4f5a, #2d3037);
 }
 
-.ca-card h3 {
-  margin: 2px 0 6px;
-  font-size: 0.96rem;
-  color: #e5e7eb;
-}
-
-.ca-card p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #9ca3af;
-}
-
-.ca-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #0f172a;
-  border: 1px solid rgba(148,163,184,0.8);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #e5e7eb;
-  margin-bottom: 6px;
-}
-
-/* -----------------------------------------------------
-   TOOLBAR (recherche + filtres)
------------------------------------------------------ */
-
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.toolbar-group label span {
-  font-size: .85rem;
-  color: #94a3b8;
-}
-
-input[type="search"],
-select {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: #1e293b;
-  color: #e2e8f0;
-  outline: none;
-  font-size: .9rem;
-}
-
-/* -----------------------------------------------------
-   FOOTER
------------------------------------------------------ */
-
+/* ------------------------------
+   Footer
+------------------------------ */
 .app-footer {
   text-align: center;
-  padding: 22px;
-  font-size: .85rem;
-  color: #94a3b8;
-}
-
-/* -----------------------------------------------------
-   ADMIN LIST
------------------------------------------------------ */
-
-.empty-state {
-  color: #94a3b8;
-  font-style: italic;
-}
-
-.error {
-  color: #f87171;
-}
-
-/* -----------------------------------------------------
-   RESPONSIVE GENERALE
------------------------------------------------------ */
-
-@media (max-width: 700px) {
-  .toolbar {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .app-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logo-circle {
-    width: 40px;
-    height: 40px;
-  }
+  padding: 24px;
+  margin-top: 30px;
+  opacity: 0.5;
+  font-size: 0.9rem;
 }
