@@ -5,7 +5,8 @@
     "url": "https://eps-barletta.github.io/ScanProf/",
     "icon": "📸",
     "category": "",
-    "matiere": "Outil transversal"
+    "matiere": "Outil transversal",
+    "description": "Scanner intelligent pour lire des QR Codes EPS."
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "url": "https://eps-barletta.github.io/RunStats/",
     "icon": "🏃‍♂️",
     "category": "CA1",
-    "matiere": ""
+    "matiere": "",
+    "description": "Suivi des performances en course et progression."
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "url": "https://eps-barletta.github.io/ClimbTrack/",
     "icon": "🧗‍♂️",
     "category": "CA2",
-    "matiere": ""
+    "matiere": "",
+    "description": "Analyse de parcours et progression en escalade."
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "url": "https://eps-barletta.github.io/CreaQRcode/",
     "icon": "🔗",
     "category": "",
-    "matiere": "Outil transversal"
+    "matiere": "Outil transversal",
+    "description": "Création rapide de QR Codes pédagogiques."
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "url": "https://eps-barletta.github.io/EPS-Observer/",
     "icon": "👀",
     "category": "",
-    "matiere": "Outil transversal"
+    "matiere": "Outil transversal",
+    "description": "Outil d’observation et d’évaluation des élèves."
   },
   {
     "id": 6,
@@ -45,6 +50,7 @@
     "url": "https://eps-barletta.github.io/ArcAthlon-/",
     "icon": "🏹",
     "category": "CA1",
-    "matiere": ""
+    "matiere": "",
+    "description": "Suivi course-tir : chronos, tours et scores."
   }
 ]
