@@ -2,58 +2,51 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Portail EPS-BARLETTA</title>
+  <title>EPS-BARLETTA • Portail d'applications</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { background: #222; color: #fff; font-family: Arial,sans-serif; margin:0; padding:0 }
-    .container { max-width: 500px; margin:40px auto; background:#333; padding:32px 16px; border-radius:18px; box-shadow:0 4px 24px #0008;}
-    h1 { color:#FF9800; margin-bottom:18px; }
-    p { margin-bottom:2em; color:#bbb;}
-    .apps-list { margin-bottom:2em;}
-    .app-card {
-      background: #444; color: #fff; border-radius: 10px;
-      margin: 12px 0; padding: 16px 18px; text-align:left;
-      box-shadow: 0 2px 8px #0003; display: flex; align-items: center;
-      text-decoration: none; transition: background .18s;
-    }
-    .app-card:hover { background:#2196F3; color:#fff;}
-    .app-icon { font-size:2em; margin-right:16px;}
-    .desc {font-size:1em; color:#dcdcdc; margin:0;}
-    @media (max-width:600px) {.container { max-width:98%;padding:4vw;}}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>🟠 Portail d’Applications EPS-BARLETTA</h1>
-    <p>Retrouvez ici toutes mes applications et outils pédagogiques à partager avec vos collègues ou élèves.<br><b>Cliquez sur l’app souhaitée :</b></p>
-    <div class="apps-list">
-      <a class="app-card" href="https://eps-barletta.github.io/game-maths/" target="_blank">
-        <span class="app-icon">🧮</span>
-        <div>
-          <strong>Défi Maths</strong>
-          <div class="desc">Jeu de calculs pour travailler addition, soustraction, multiplication et division avec plusieurs niveaux et modes.</div>
-        </div>
-      </a>
-      <!-- Exemple : ajoutez les autres applications ici -->
-      <a class="app-card" href="https://eps-barletta.github.io/autre-application/" target="_blank">
-        <span class="app-icon">📝</span>
-        <div>
-          <strong>Fiche Texte</strong>
-          <div class="desc">Outil d’édition ou génération de fiches d’exercices ou de texte.</div>
-        </div>
-      </a>
-      <!-- Ajoutez autant de <a class="app-card"...> que nécessaire -->
+<body class="theme-dark">
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo-circle">EB</div>
+      <div>
+        <h1>Portail d'apps pédagogiques</h1>
+        <p>EPS-BARLETTA • Outils pour l'EPS, les maths, les langues et plus encore.</p>
+      </div>
     </div>
-    <p style="color:#8bc34a;font-size:1.1em;">
-      📱 Compatible ordinateur, tablette, smartphone.<br>
-      🔗 Partage ce lien : <br>
-      <code>https://eps-barletta.github.io/apps/</code>
-    </p>
-    <hr style="margin:28px 0;border:0;border-top:1.5px solid #444;">
-    <div style="font-size:0.96em;color:#bbb;">
-      <b>Astuces :</b> Tu peux ajouter de nouvelles applis à tout moment (<i>modifie ce fichier, ajoute plus de liens</i>). <br>
-      <b>Sécurisé :</b> Accessible uniquement à ceux à qui tu donnes le lien.
-    </div>
-  </div>
+    <nav class="header-actions">
+      <a href="admin.html" class="btn-outline">Admin</a>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <section class="toolbar">
+      <div class="toolbar-group">
+        <label>
+          <span>Recherche</span>
+          <input type="search" id="searchInput" placeholder="Nom, matière, description...">
+        </label>
+      </div>
+      <div class="toolbar-group">
+        <label>
+          <span>Matière</span>
+          <select id="categoryFilter">
+            <option value="">Toutes</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="appsGrid" class="apps-grid">
+      <!-- Cartes générées par script.js -->
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Créé par EPS-BARLETTA • Hébergé sur GitHub Pages</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
