@@ -14,7 +14,7 @@
     <div class="logo-circle">ADM</div>
     <div>
       <h1>Administration des Applications</h1>
-      <p>Gérer, classer et publier vos applications.</p>
+      <p>Ajouter, modifier et classer vos applications.</p>
     </div>
   </div>
 
@@ -29,11 +29,13 @@
     <h2>Connexion administrateur</h2>
     <p>Entrez le mot de passe admin et votre token GitHub.</p>
 
-    <label>Mot de passe admin
+    <label>
+      Mot de passe admin
       <input type="password" id="adminPassword" placeholder="Mot de passe">
     </label>
 
-    <label>Token GitHub
+    <label>
+      Token GitHub
       <input type="password" id="githubTokenInput" placeholder="ghp_xxxxx">
     </label>
 
@@ -45,38 +47,40 @@
   </div>
 </div>
 
-<!-- Contenu admin principal -->
+<!-- Contenu admin -->
 <main id="adminMain" class="app-main" style="display:none;">
 
   <section class="toolbar">
     <div class="toolbar-group">
-      <h2>Ajouter une application</h2>
-      <p>Renseignez les champs suivants :</p>
+      <h2>Ajouter / Modifier une application</h2>
+      <p>Chaque modification met automatiquement à jour le portail.</p>
     </div>
   </section>
 
+  <!-- Formulaire -->
   <section class="admin-form-section">
     <form id="appForm" autocomplete="off" class="admin-form-grid">
 
-      <!-- Nom -->
       <label>
         <span>Nom de l'application</span>
         <input type="text" id="appName" required>
       </label>
 
-      <!-- Icône -->
       <label>
         <span>Icône (emoji)</span>
         <input type="text" id="appIcon" placeholder="📱">
       </label>
 
-      <!-- URL -->
       <label>
         <span>URL de l'application</span>
         <input type="url" id="appUrl" required>
       </label>
 
-      <!-- Catégorie EPS (CA) -->
+      <label>
+        <span>Description (courte)</span>
+        <textarea id="appDescription" rows="2" placeholder="Brève description de l'application"></textarea>
+      </label>
+
       <label>
         <span>Compétence EPS (CA)</span>
         <select id="appCA">
@@ -89,7 +93,6 @@
         </select>
       </label>
 
-      <!-- Matière -->
       <label>
         <span>Matière (hors EPS)</span>
         <select id="appMatiere">
@@ -103,17 +106,17 @@
         </select>
       </label>
 
-      <!-- Bouton -->
       <div class="admin-submit-row">
-        <button type="submit" class="btn-primary">Ajouter / Mettre à jour</button>
+        <button type="submit" class="btn-primary">Enregistrer</button>
       </div>
+
     </form>
   </section>
 
-  <!-- Liste des applications -->
+  <!-- Liste des apps -->
   <section>
     <h2>Applications existantes</h2>
-    <p>Celles-ci apparaissent automatiquement sur les pages publiques selon leur catégorie (CA / Matière).</p>
+    <p>Ces applications apparaîtront automatiquement dans les pages publiques selon leur CA ou matière.</p>
 
     <div id="appsAdminList" class="admin-list"></div>
   </section>
