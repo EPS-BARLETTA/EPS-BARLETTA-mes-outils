@@ -2,170 +2,124 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Admin • EPS-BARLETTA Apps</title>
+  <title>Administration • EPS BARLETTA Apps</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="theme-dark">
 
 <header class="app-header">
   <div class="brand">
     <div class="logo-circle">ADM</div>
     <div>
-      <h1>Administration des applications</h1>
-      <p>Ajouter, modifier et publier les apps sur le portail.</p>
+      <h1>Administration des Applications</h1>
+      <p>Gérer, classer et publier vos applications.</p>
     </div>
   </div>
+
   <nav class="header-actions">
-    <a href="index.html" class="btn-outline">Retour au portail</a>
+    <a href="index.html" class="btn-outline">Retour au Portail</a>
   </nav>
 </header>
 
-<!-- Écran de connexion -->
-<div id="loginOverlay" style="
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, #020617 0, #000 50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-">
-  <div style="
-    background:#020617;
-    border-radius:18px;
-    padding:22px 20px 20px;
-    max-width:380px;
-    width:90%;
-    border:1px solid rgba(148,163,184,0.3);
-    box-shadow:0 20px 60px rgba(15,23,42,0.9);
-  ">
-    <h2 style="margin-top:0;margin-bottom:8px;font-size:1.1rem;">Connexion administrateur</h2>
-    <p style="margin-top:0;margin-bottom:10px;font-size:0.88rem;color:#9ca3af;">
-      Entrez le mot de passe admin et votre token GitHub (pour publier automatiquement sur le dépôt).
-    </p>
+<!-- Connexion admin -->
+<div id="loginOverlay" class="admin-login-overlay">
+  <div class="admin-login-box">
+    <h2>Connexion administrateur</h2>
+    <p>Entrez le mot de passe admin et votre token GitHub.</p>
 
-    <label style="display:block;margin-bottom:8px;">
-      <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Mot de passe admin</span>
-      <input type="password" id="adminPassword" placeholder="Mot de passe" style="
-        width:100%;
-        padding:9px 11px;
-        border-radius:999px;
-        border:1px solid #1f2937;
-        background:#020617;
-        color:#e5e7eb;
-        outline:none;
-      ">
+    <label>Mot de passe admin
+      <input type="password" id="adminPassword" placeholder="Mot de passe">
     </label>
 
-    <label style="display:block;margin-bottom:10px;">
-      <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Token GitHub (droits écriture sur le dépôt)</span>
-      <input type="password" id="githubTokenInput" placeholder="ghp_..." style="
-        width:100%;
-        padding:9px 11px;
-        border-radius:999px;
-        border:1px solid #1f2937;
-        background:#020617;
-        color:#e5e7eb;
-        outline:none;
-      ">
+    <label>Token GitHub
+      <input type="password" id="githubTokenInput" placeholder="ghp_xxxxx">
     </label>
 
-    <button id="loginBtn" class="btn-primary" style="width:100%;justify-content:center;">Se connecter</button>
-    <p id="loginError" style="margin:10px 0 0;font-size:0.8rem;color:#fecaca;display:none;">
-      Mot de passe ou token incorrect.
-    </p>
-    <p style="margin:8px 0 0;font-size:0.75rem;color:#6b7280;">
-      Le token n’est jamais stocké, il est utilisé seulement dans cette session du navigateur.
+    <button id="loginBtn" class="btn-primary">Connexion</button>
+
+    <p id="loginError" style="display:none;color:#f87171;font-size:0.85rem;">
+      Identifiants incorrects.
     </p>
   </div>
 </div>
 
-<!-- Interface admin -->
-<main class="app-main" id="adminMain" style="display:none;">
+<!-- Contenu admin principal -->
+<main id="adminMain" class="app-main" style="display:none;">
 
-  <!-- Barre outil -->
-  <section class="toolbar" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+  <section class="toolbar">
     <div class="toolbar-group">
-      <span>Nouvelle application</span>
-      <p style="margin:0;font-size:0.8rem;color:#9ca3af;">
-        Ajoutez une application, elle sera automatiquement publiée sur GitHub.
-      </p>
-    </div>
-
-    <div class="toolbar-group" style="text-align:right;">
-      <button id="exportBtn" class="btn-outline" style="margin-bottom:6px;">Télécharger apps.json</button>
-      <button id="syncBtn" class="btn-outline">Forcer la sauvegarde GitHub</button>
+      <h2>Ajouter une application</h2>
+      <p>Renseignez les champs suivants :</p>
     </div>
   </section>
 
-  <!-- Formulaire ajout -->
-  <section style="
-    background:#020617;
-    border-radius:18px;
-    padding:16px 16px 12px;
-    border:1px solid rgba(148,163,184,0.2);
-    margin-bottom:18px;
-  ">
-    <form id="appForm" autocomplete="off" style="display:grid;grid-template-columns:1.4fr 1fr;gap:10px 12px;">
-      <div>
-        <label>
-          <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Nom de l'application</span>
-          <input type="text" id="appName" required placeholder="ArcAthlon, RunStats..." />
-        </label>
-      </div>
-      <div>
-        <label>
-          <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Catégorie / Matière</span>
-          <input type="text" id="appCategory" placeholder="EPS, Maths, Français..." />
-        </label>
-      </div>
-      <div>
-        <label>
-          <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">URL</span>
-          <input type="url" id="appUrl" required placeholder="https://eps-barletta.github.io/ArcAthlon/" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Icône (emoji)</span>
-          <input type="text" id="appIcon" placeholder="🏃‍♂️, 🧮, 🎯..." />
-        </label>
-      </div>
-      <div style="grid-column:1 / -1;">
-        <label>
-          <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Description</span>
-          <textarea id="appDescription" rows="2" placeholder="Description courte de l'application" style="
-            width:100%;
-            padding:9px 11px;
-            border-radius:12px;
-            border:1px solid #1f2937;
-            background:#020617;
-            color:#e5e7eb;
-            resize:vertical;
-            font-family:inherit;
-            font-size:0.9rem;
-          "></textarea>
-        </label>
-      </div>
-      <div style="grid-column:1 / -1;text-align:right;">
-        <button type="submit" class="btn-primary">Ajouter et publier</button>
+  <section class="admin-form-section">
+    <form id="appForm" autocomplete="off" class="admin-form-grid">
+
+      <!-- Nom -->
+      <label>
+        <span>Nom de l'application</span>
+        <input type="text" id="appName" required>
+      </label>
+
+      <!-- Icône -->
+      <label>
+        <span>Icône (emoji)</span>
+        <input type="text" id="appIcon" placeholder="📱">
+      </label>
+
+      <!-- URL -->
+      <label>
+        <span>URL de l'application</span>
+        <input type="url" id="appUrl" required>
+      </label>
+
+      <!-- Catégorie EPS (CA) -->
+      <label>
+        <span>Compétence EPS (CA)</span>
+        <select id="appCA">
+          <option value="">Aucun</option>
+          <option value="CA1">CA1</option>
+          <option value="CA2">CA2</option>
+          <option value="CA3">CA3</option>
+          <option value="CA4">CA4</option>
+          <option value="CA5">CA5</option>
+        </select>
+      </label>
+
+      <!-- Matière -->
+      <label>
+        <span>Matière (hors EPS)</span>
+        <select id="appMatiere">
+          <option value="">Aucune</option>
+          <option value="Maths">Maths</option>
+          <option value="Français">Français</option>
+          <option value="Anglais">Anglais</option>
+          <option value="Allemand">Allemand</option>
+          <option value="Sciences">Sciences</option>
+          <option value="Outil transversal">Outil transversal</option>
+        </select>
+      </label>
+
+      <!-- Bouton -->
+      <div class="admin-submit-row">
+        <button type="submit" class="btn-primary">Ajouter / Mettre à jour</button>
       </div>
     </form>
   </section>
 
-  <!-- Liste des apps -->
+  <!-- Liste des applications -->
   <section>
-    <h2 style="font-size:1rem;margin-bottom:8px;">Applications existantes</h2>
-    <p style="margin-top:0;margin-bottom:10px;font-size:0.8rem;color:#9ca3af;">
-      La liste est synchronisée avec <code>data/apps.json</code> du dépôt GitHub <code>EPS-BARLETTA/EPS-BARLETTA-mes-outils</code>.
-    </p>
-    <div id="appsAdminList" style="display:flex;flex-direction:column;gap:8px;"></div>
+    <h2>Applications existantes</h2>
+    <p>Celles-ci apparaissent automatiquement sur les pages publiques selon leur catégorie (CA / Matière).</p>
+
+    <div id="appsAdminList" class="admin-list"></div>
   </section>
 
 </main>
 
-<!-- Import du script admin -->
 <script src="admin.js"></script>
 
 </body>
