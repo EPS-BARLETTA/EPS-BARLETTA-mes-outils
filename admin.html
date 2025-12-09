@@ -27,11 +27,10 @@
 <div id="loginOverlay" class="admin-login-overlay">
   <div class="admin-login-box">
     <h2>Connexion administrateur</h2>
-    <p>Entrez le mot de passe admin et votre token GitHub.</p>
 
     <label>
       Mot de passe admin
-      <input type="password" id="adminPassword" placeholder="Mot de passe">
+      <input type="password" id="adminPassword">
     </label>
 
     <label>
@@ -41,7 +40,7 @@
 
     <button id="loginBtn" class="btn-primary">Connexion</button>
 
-    <p id="loginError" style="display:none;color:#f87171;font-size:0.85rem;">
+    <p id="loginError" style="display:none;color:#f87171;margin-top:10px;">
       Identifiants incorrects.
     </p>
   </div>
@@ -53,7 +52,7 @@
   <section class="toolbar">
     <div class="toolbar-group">
       <h2>Ajouter / Modifier une application</h2>
-      <p>Chaque modification met automatiquement à jour le portail.</p>
+      <p>Les modifications sont automatiquement publiées.</p>
     </div>
   </section>
 
@@ -62,29 +61,29 @@
     <form id="appForm" autocomplete="off" class="admin-form-grid">
 
       <label>
-        <span>Nom de l'application</span>
+        <span>Nom</span>
         <input type="text" id="appName" required>
       </label>
 
       <label>
-        <span>Icône (emoji)</span>
+        <span>Icône</span>
         <input type="text" id="appIcon" placeholder="📱">
       </label>
 
       <label>
-        <span>URL de l'application</span>
+        <span>URL</span>
         <input type="url" id="appUrl" required>
       </label>
 
       <label>
-        <span>Description (courte)</span>
-        <textarea id="appDescription" rows="2" placeholder="Brève description de l'application"></textarea>
+        <span>Description</span>
+        <textarea id="appDescription" rows="2"></textarea>
       </label>
 
       <label>
         <span>Compétence EPS (CA)</span>
         <select id="appCA">
-          <option value="">Aucun</option>
+          <option value="">Aucune (hors EPS)</option>
           <option value="CA1">CA1</option>
           <option value="CA2">CA2</option>
           <option value="CA3">CA3</option>
@@ -94,16 +93,8 @@
       </label>
 
       <label>
-        <span>Matière (hors EPS)</span>
-        <select id="appMatiere">
-          <option value="">Aucune</option>
-          <option value="Maths">Maths</option>
-          <option value="Français">Français</option>
-          <option value="Anglais">Anglais</option>
-          <option value="Allemand">Allemand</option>
-          <option value="Sciences">Sciences</option>
-          <option value="Outil transversal">Outil transversal</option>
-        </select>
+        <span>Matière (optionnel)</span>
+        <input type="text" id="appMatiere" placeholder="Maths, Français, Sciences…">
       </label>
 
       <div class="admin-submit-row">
@@ -116,7 +107,6 @@
   <!-- Liste des apps -->
   <section>
     <h2>Applications existantes</h2>
-    <p>Ces applications apparaîtront automatiquement dans les pages publiques selon leur CA ou matière.</p>
 
     <div id="appsAdminList" class="admin-list"></div>
   </section>
