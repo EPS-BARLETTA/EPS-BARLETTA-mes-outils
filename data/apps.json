@@ -79,10 +79,10 @@
     "matiere": ""
   },
   {
-    "name": "Calculateur Demi-fond",
-    "icon": "🏃‍♀️🏃🏻‍♂️",
-    "url": "https://eps-barletta.github.io/Calculateur-Demi--Fond/",
-    "description": "Calculateur Demi-Fond permet de déterminer instantanément une allure, un temps au tour et un nombre de passages à partir de la VMA ou d’un temps donné. L’app génère aussi des séances types et permet d’exporter les résultats en PDF ou PNG.",
+    "name": "Chrono intervalles",
+    "icon": "🏃‍♀️🏃🏻‍♂️🏃‍♀️",
+    "url": "https://eps-barletta.github.io/chrono-Intervalles-EPS/",
+    "description": "Chrono‑Intervalles EPS permet de prendre des temps intermédiaires, d’afficher le temps cumulé et la vitesse correspondante. Un QR‑code compatible ScanProf facilite la récupération des données.",
     "category": "CA1",
     "matiere": ""
   }
