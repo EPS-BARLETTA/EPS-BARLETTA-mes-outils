@@ -1,24 +1,49 @@
-// admin.js
-// Espace administrateur : login + gestion apps + export JSON
+/* =========================================================
+   CONFIGURATION
+   ========================================================= */
 
-const ADMIN_PASSWORD = "dok76B46"; // 🔒 Mot de passe admin défini
+const OWNER = "EPS-BARLETTA";
+const REPO = "EPS-BARLETTA-mes-outils";
+const FILE_PATH = "data/apps.json";
+const BRANCH = "main";
+
+/* =========================================================
+   ELEMENTS DOM
+   ========================================================= */
 
 const loginOverlay = document.getElementById("loginOverlay");
 const adminMain = document.getElementById("adminMain");
-const adminPasswordInput = document.getElementById("adminPassword");
+
 const loginBtn = document.getElementById("loginBtn");
 const loginError = document.getElementById("loginError");
+const adminPasswordInput = document.getElementById("adminPassword");
+
+const tokenInput = document.getElementById("githubToken");
 
 const appForm = document.getElementById("appForm");
 const appsAdminList = document.getElementById("appsAdminList");
-const exportBtn = document.getElementById("exportBtn");
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 
 let apps = [];
+let fileSha = null;
 
-// --- Login admin ---
+/* =========================================================
+   AUTHENTIFICATION ADMIN
+   ========================================================= */
+
+loginBtn.onclick = doLogin;
+adminPasswordInput.onkeydown = (e) => {
+  if (e.key === "Enter") doLogin();
+};
+
 function doLogin() {
-  const value = adminPasswordInput.value.trim();
-  if (value === ADMIN_PASSWORD) {
+  // 🔐 CHANGE ICI TON MOT DE PASSE
+  const ADMIN_PASSWORD = "dok76B46";
+
+  if (adminPasswordInput.value === ADMIN_PASSWORD) {
     loginOverlay.style.display = "none";
     adminMain.style.display = "block";
   } else {
@@ -26,107 +51,138 @@ function doLogin() {
   }
 }
 
-loginBtn.addEventListener("click", doLogin);
-adminPasswordInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    doLogin();
-  }
-});
+/* =========================================================
+   CHARGER APPS.JSON DEPUIS GITHUB
+   ========================================================= */
 
-// --- Charger les apps ---
-fetch("data/apps.json")
-  .then(res => res.json())
-  .then(data => {
-    apps = data;
-    renderAdminList();
-  })
-  .catch(err => {
-    console.error("Erreur de chargement apps.json", err);
-    appsAdminList.innerHTML = `<p class="error">Impossible de charger data/apps.json</p>`;
-  });
+async function loadApps() {
+  const token = tokenInput.value;
 
-// --- Affichage liste admin ---
-function renderAdminList() {
-  if (!apps.length) {
-    appsAdminList.innerHTML = `<p class="empty-state">Aucune application pour le moment.</p>`;
+  if (!token) {
+    alert("⚠️ Collez votre token GitHub dans le champ prévu avant d'utiliser l'admin.");
     return;
   }
 
-  appsAdminList.innerHTML = apps
-    .map(app => {
-      return `
-        <div class="app-card" style="padding:10px 12px;">
-          <div class="app-card-icon" style="min-width:44px;height:44px;border-radius:14px;font-size:1.3rem;">
-            ${app.icon || "📚"}
-          </div>
-          <div class="app-card-body" style="gap:4px;">
-            <div class="app-card-header">
-              <h2 style="font-size:0.95rem;">${app.name}</h2>
-              ${app.category ? `<span class="badge">${app.category}</span>` : ""}
-            </div>
-            <p class="app-card-desc" style="font-size:0.8rem;">${app.description || ""}</p>
-            <p style="margin:0;font-size:0.78rem;color:#6b7280;word-break:break-all;">
-              <code>${app.url}</code>
-            </p>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:4px;align-self:center;">
-            <button class="btn-danger" onclick="deleteApp(${app.id})">Supprimer</button>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+
+  const response = await fetch(url, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+
+  const data = await response.json();
+
+  fileSha = data.sha; // contient la signature du fichier
+  apps = JSON.parse(atob(data.content)); // décode le JSON base64
+
+  renderAppsList();
 }
 
-// --- Ajouter une app ---
-appForm.addEventListener("submit", e => {
+/* =========================================================
+   SAUVEGARDE AUTOMATIQUE VERS GITHUB
+   ========================================================= */
+
+async function saveApps() {
+  const token = tokenInput.value;
+
+  if (!token) {
+    alert("⚠️ Token GitHub manquant !");
+    return;
+  }
+
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+
+  const newContent = btoa(JSON.stringify(apps, null, 2));
+
+  const body = {
+    message: "Mise à jour apps.json via admin",
+    content: newContent,
+    sha: fileSha,
+    branch: BRANCH
+  };
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!res.ok) {
+    alert("❌ Erreur lors de la sauvegarde !");
+    console.error(await res.text());
+    return;
+  }
+
+  const json = await res.json();
+  fileSha = json.content.sha;
+
+  alert("✅ apps.json mis à jour sur GitHub !");
+}
+
+/* =========================================================
+   AFFICHAGE LISTE APPS
+   ========================================================= */
+
+function renderAppsList() {
+  appsAdminList.innerHTML = "";
+
+  apps.forEach(app => {
+    const card = document.createElement("div");
+    card.className = "app-card";
+
+    card.innerHTML = `
+      <div class="app-card-icon">${app.icon || "📚"}</div>
+      <div class="app-card-body">
+        <h3>${app.name}</h3>
+        <p>${app.description || ""}</p>
+        <code>${app.url}</code>
+      </div>
+      <button class="btn-danger" onclick="deleteApp(${app.id})">Supprimer</button>
+    `;
+
+    appsAdminList.appendChild(card);
+  });
+}
+
+/* =========================================================
+   AJOUT D'UNE APPLICATION
+   ========================================================= */
+
+appForm.onsubmit = (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("appName").value.trim();
-  const category = document.getElementById("appCategory").value.trim();
-  const url = document.getElementById("appUrl").value.trim();
-  const icon = document.getElementById("appIcon").value.trim() || "📚";
-  const description = document.getElementById("appDescription").value.trim();
+  const name = document.getElementById("appName").value;
+  const category = document.getElementById("appCategory").value;
+  const url = document.getElementById("appUrl").value;
+  const icon = document.getElementById("appIcon").value;
+  const description = document.getElementById("appDescription").value;
 
-  if (!name || !url) {
-    alert("Nom et URL obligatoires.");
-    return;
-  }
+  const id = apps.length ? Math.max(...apps.map(a => a.id)) + 1 : 1;
 
-  const maxId = apps.reduce((m, a) => Math.max(m, a.id || 0), 0);
-  apps.push({
-    id: maxId + 1,
-    name,
-    category,
-    url,
-    icon,
-    description
-  });
+  apps.push({ id, name, category, url, icon, description });
 
-  appForm.reset();
-  renderAdminList();
-});
+  renderAppsList();
+  saveApps();
+};
 
-// --- Supprimer une app ---
+/* =========================================================
+   SUPPRESSION D'UNE APPLICATION
+   ========================================================= */
+
 function deleteApp(id) {
-  if (!confirm("Supprimer cette application ?")) return;
+  if (!confirm("Supprimer cette app ?")) return;
+
   apps = apps.filter(a => a.id !== id);
-  renderAdminList();
+
+  renderAppsList();
+  saveApps();
 }
 
-// --- Exporter JSON ---
-exportBtn.addEventListener("click", () => {
-  const json = JSON.stringify(apps, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
+/* =========================================================
+   CHARGE LA LISTE DÈS QUE LE TOKEN EST COLLÉ
+   ========================================================= */
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "apps.json";
-  a.click();
-
-  URL.revokeObjectURL(url);
-
-  alert("apps.json téléchargé !");
-});
+tokenInput.onchange = loadApps;
+tokenInput.onkeyup = loadApps;
