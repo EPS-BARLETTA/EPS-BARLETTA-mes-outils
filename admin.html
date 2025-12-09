@@ -13,7 +13,7 @@
     <div class="logo-circle">ADM</div>
     <div>
       <h1>Administration des applications</h1>
-      <p>Ajouter, modifier et supprimer les apps du portail.</p>
+      <p>Ajouter, modifier et publier les apps sur le portail.</p>
     </div>
   </div>
   <nav class="header-actions">
@@ -35,28 +35,48 @@
     background:#020617;
     border-radius:18px;
     padding:22px 20px 20px;
-    max-width:360px;
+    max-width:380px;
     width:90%;
     border:1px solid rgba(148,163,184,0.3);
     box-shadow:0 20px 60px rgba(15,23,42,0.9);
   ">
     <h2 style="margin-top:0;margin-bottom:8px;font-size:1.1rem;">Connexion administrateur</h2>
-    <p style="margin-top:0;margin-bottom:14px;font-size:0.88rem;color:#9ca3af;">
-      Entrez le mot de passe admin.
+    <p style="margin-top:0;margin-bottom:10px;font-size:0.88rem;color:#9ca3af;">
+      Entrez le mot de passe admin et votre token GitHub (pour publier automatiquement sur le dépôt).
     </p>
-    <input type="password" id="adminPassword" placeholder="Mot de passe" style="
-      width:100%;
-      padding:9px 11px;
-      border-radius:999px;
-      border:1px solid #1f2937;
-      background:#020617;
-      color:#e5e7eb;
-      outline:none;
-      margin-bottom:10px;
-    ">
+
+    <label style="display:block;margin-bottom:8px;">
+      <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Mot de passe admin</span>
+      <input type="password" id="adminPassword" placeholder="Mot de passe" style="
+        width:100%;
+        padding:9px 11px;
+        border-radius:999px;
+        border:1px solid #1f2937;
+        background:#020617;
+        color:#e5e7eb;
+        outline:none;
+      ">
+    </label>
+
+    <label style="display:block;margin-bottom:10px;">
+      <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Token GitHub (droits écriture sur le dépôt)</span>
+      <input type="password" id="githubTokenInput" placeholder="ghp_..." style="
+        width:100%;
+        padding:9px 11px;
+        border-radius:999px;
+        border:1px solid #1f2937;
+        background:#020617;
+        color:#e5e7eb;
+        outline:none;
+      ">
+    </label>
+
     <button id="loginBtn" class="btn-primary" style="width:100%;justify-content:center;">Se connecter</button>
     <p id="loginError" style="margin:10px 0 0;font-size:0.8rem;color:#fecaca;display:none;">
-      Mot de passe incorrect.
+      Mot de passe ou token incorrect.
+    </p>
+    <p style="margin:8px 0 0;font-size:0.75rem;color:#6b7280;">
+      Le token n’est jamais stocké, il est utilisé seulement dans cette session du navigateur.
     </p>
   </div>
 </div>
@@ -69,12 +89,14 @@
     <div class="toolbar-group">
       <span>Nouvelle application</span>
       <p style="margin:0;font-size:0.8rem;color:#9ca3af;">
-        Ajoutez une application au portail.
+        Ajoutez une application, elle sera automatiquement publiée sur GitHub.
       </p>
     </div>
 
-    <!-- 🔥 BOUTON POUR TÉLÉCHARGER apps.json (le fameux !) -->
-    <button id="exportBtn" class="btn-outline">Télécharger apps.json</button>
+    <div class="toolbar-group" style="text-align:right;">
+      <button id="exportBtn" class="btn-outline" style="margin-bottom:6px;">Télécharger apps.json</button>
+      <button id="syncBtn" class="btn-outline">Forcer la sauvegarde GitHub</button>
+    </div>
   </section>
 
   <!-- Formulaire ajout -->
@@ -89,35 +111,45 @@
       <div>
         <label>
           <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Nom de l'application</span>
-          <input type="text" id="appName" required />
+          <input type="text" id="appName" required placeholder="ArcAthlon, RunStats..." />
         </label>
       </div>
       <div>
         <label>
           <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Catégorie / Matière</span>
-          <input type="text" id="appCategory" />
+          <input type="text" id="appCategory" placeholder="EPS, Maths, Français..." />
         </label>
       </div>
       <div>
         <label>
           <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">URL</span>
-          <input type="url" id="appUrl" required />
+          <input type="url" id="appUrl" required placeholder="https://eps-barletta.github.io/ArcAthlon/" />
         </label>
       </div>
       <div>
         <label>
           <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Icône (emoji)</span>
-          <input type="text" id="appIcon" placeholder="📚" />
+          <input type="text" id="appIcon" placeholder="🏃‍♂️, 🧮, 🎯..." />
         </label>
       </div>
       <div style="grid-column:1 / -1;">
         <label>
           <span style="display:block;font-size:0.8rem;color:#9ca3af;margin-bottom:3px;">Description</span>
-          <textarea id="appDescription" rows="2"></textarea>
+          <textarea id="appDescription" rows="2" placeholder="Description courte de l'application" style="
+            width:100%;
+            padding:9px 11px;
+            border-radius:12px;
+            border:1px solid #1f2937;
+            background:#020617;
+            color:#e5e7eb;
+            resize:vertical;
+            font-family:inherit;
+            font-size:0.9rem;
+          "></textarea>
         </label>
       </div>
       <div style="grid-column:1 / -1;text-align:right;">
-        <button type="submit" class="btn-primary">Ajouter l'application</button>
+        <button type="submit" class="btn-primary">Ajouter et publier</button>
       </div>
     </form>
   </section>
@@ -125,6 +157,9 @@
   <!-- Liste des apps -->
   <section>
     <h2 style="font-size:1rem;margin-bottom:8px;">Applications existantes</h2>
+    <p style="margin-top:0;margin-bottom:10px;font-size:0.8rem;color:#9ca3af;">
+      La liste est synchronisée avec <code>data/apps.json</code> du dépôt GitHub <code>EPS-BARLETTA/EPS-BARLETTA-mes-outils</code>.
+    </p>
     <div id="appsAdminList" style="display:flex;flex-direction:column;gap:8px;"></div>
   </section>
 
