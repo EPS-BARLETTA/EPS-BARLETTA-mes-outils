@@ -77,5 +77,13 @@
     "description": "VMA-Mange-Plots est une application où les élèves choisissent un projet de course, défini en fonction de leur VMA et du pourcentage sollicité, sur des tranches de 1 min 30. Les plots franchis indiquent si le projet est atteint, avec un écart possible de 0,5 à 1 km/h. Un mode “fantôme / lièvre” permet de s’entraîner ou de s’évaluer, et un QR-code compatible ScanProf facilite la récupération du travail réalisé.",
     "category": "CA1",
     "matiere": ""
+  },
+  {
+    "name": "Calculateur Demi-fond",
+    "icon": "🏃‍♀️🏃🏻‍♂️",
+    "url": "https://eps-barletta.github.io/Calculateur-Demi--Fond/",
+    "description": "Calculateur Demi-Fond permet de déterminer instantanément une allure, un temps au tour et un nombre de passages à partir de la VMA ou d’un temps donné. L’app génère aussi des séances types et permet d’exporter les résultats en PDF ou PNG.",
+    "category": "CA1",
+    "matiere": ""
   }
 ]
