@@ -18,13 +18,12 @@
     "description": "Suivi des performances en course et progression."
   },
   {
-    "id": 3,
     "name": "ClimbTrack",
-    "url": "https://eps-barletta.github.io/ClimbTrack/",
     "icon": "🧗‍♂️",
+    "url": "https://eps-barletta.github.io/ClimbTrack/",
+    "description": "Analyse de parcours et progression en escalade. QR code compatible ScaProf.",
     "category": "CA2",
-    "matiere": "",
-    "description": "Analyse de parcours et progression en escalade."
+    "matiere": ""
   },
   {
     "id": 4,
@@ -74,7 +73,7 @@
     "name": "VMA-Mange plots",
     "icon": "🏃‍♀️🏃🏻‍♂️",
     "url": "https://eps-barletta.github.io/VMA-mange-plots/",
-    "description": "VMA-Mange-Plots\n permet aux élèves de courir selon leur VMA et le % sollicité. Un mode “fantôme/lièvre” et QR-code ScanProf compatible.",
+    "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre” et un QR-code ScanProf pour récupérer les résultats.",
     "category": "CA1",
     "matiere": ""
   },
