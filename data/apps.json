@@ -74,7 +74,7 @@
     "name": "VMA-Mange plots",
     "icon": "🏃‍♀️🏃🏻‍♂️",
     "url": "https://eps-barletta.github.io/VMA-mange-plots/",
-    "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre” et un QR-code ScanProf pour récupérer les résultats.",
+    "description": "VMA-Mange-Plots\n permet aux élèves de courir selon leur VMA et le % sollicité. Un mode “fantôme/lièvre” et QR-code ScanProf compatible.",
     "category": "CA1",
     "matiere": ""
   },
