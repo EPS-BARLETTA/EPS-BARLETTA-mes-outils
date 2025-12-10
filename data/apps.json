@@ -17,13 +17,12 @@
     "matiere": ""
   },
   {
-    "id": 3,
     "name": "ClimbTrack",
-    "url": "https://eps-barletta.github.io/ClimbTrack/",
     "icon": "🧗‍♂️",
+    "url": "https://eps-barletta.github.io/ClimbTrack/",
+    "description": "Analyse de parcours et progression en escalade.\nQR code compatible ScanProf.",
     "category": "CA2",
-    "matiere": "",
-    "description": "Analyse de parcours et progression en escalade."
+    "matiere": ""
   },
   {
     "id": 4,
@@ -53,10 +52,11 @@
     "description": "Suivi course-tir : chronos, tours et scores."
   },
   {
+    "id": 7,
     "name": "Défi mathématiques",
     "icon": "💡",
     "url": "https://eps-barletta.github.io/game-maths/",
-    "description": "Game-Maths est une application web qui propose des jeux de calcul mental rapides et interactifs. Elle permet d’entraîner les élèves, de suivre leurs résultats et de rendre la pratique des mathématiques plus ludique.\nQr code compatible ScanProf.",
+    "description": "Game-Maths est une application web qui propose des jeux de calcul mental rapides et interactifs. Elle permet d’entraîner les élèves, de suivre leurs résultats et de rendre la pratique des mathématiques plus ludique.",
     "category": "",
     "matiere": ""
   },
