@@ -44,12 +44,13 @@
     "description": "Outil d’observation et d’évaluation des élèves."
   },
   {
+    "id": 6,
     "name": "ArcAthlon",
-    "icon": "🏹",
     "url": "https://eps-barletta.github.io/ArcAthlon-/",
-    "description": "Suivi course-tir : chronos, tours et scores.\nQR code compatible ScanProf.",
+    "icon": "🏹",
     "category": "CA1",
-    "matiere": ""
+    "matiere": "",
+    "description": "Suivi course-tir : chronos, tours et scores."
   },
   {
     "id": 7,
@@ -72,7 +73,7 @@
     "name": "VMA-Mange plots",
     "icon": "🏃‍♀️🏃🏻‍♂️",
     "url": "https://eps-barletta.github.io/VMA-mange-plots/",
-    "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre” et un QR-code ScanProf pour récupérer les résultats.",
+    "description": "VMA-Mange-Plots permet aux élèves de courir selon leur VMA et le % sollicité. Les plots franchis indiquent la réussite, avec un mode “fantôme/lièvre”.\nQR-code ScanProf pour récupérer les résultats.",
     "category": "CA1",
     "matiere": ""
   },
