@@ -17,12 +17,13 @@
     "matiere": ""
   },
   {
+    "id": 3,
     "name": "ClimbTrack",
-    "icon": "🧗‍♂️",
     "url": "https://eps-barletta.github.io/ClimbTrack/",
-    "description": "Analyse de parcours et progression en escalade.\nQR code compatible ScanProf.",
+    "icon": "🧗‍♂️",
     "category": "CA2",
-    "matiere": ""
+    "matiere": "",
+    "description": "Analyse de parcours et progression en escalade."
   },
   {
     "id": 4,
@@ -43,13 +44,12 @@
     "description": "Outil d’observation et d’évaluation des élèves."
   },
   {
-    "id": 6,
     "name": "ArcAthlon",
-    "url": "https://eps-barletta.github.io/ArcAthlon-/",
     "icon": "🏹",
+    "url": "https://eps-barletta.github.io/ArcAthlon-/",
+    "description": "Suivi course-tir : chronos, tours et scores.\nQR code compatible ScanProf.",
     "category": "CA1",
-    "matiere": "",
-    "description": "Suivi course-tir : chronos, tours et scores."
+    "matiere": ""
   },
   {
     "id": 7,
