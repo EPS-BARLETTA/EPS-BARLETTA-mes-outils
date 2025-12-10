@@ -9,21 +9,21 @@
     "description": "Scanner intelligent pour lire des QR Codes EPS."
   },
   {
-    "id": 2,
     "name": "RunStats",
-    "url": "https://eps-barletta.github.io/RunStats/",
     "icon": "🏃‍♂️",
+    "url": "https://eps-barletta.github.io/RunStats/",
+    "description": "Suivi des performances en course et progression. \nQR code compatible ScanProf.",
     "category": "CA1",
-    "matiere": "",
-    "description": "Suivi des performances en course et progression."
+    "matiere": ""
   },
   {
+    "id": 3,
     "name": "ClimbTrack",
-    "icon": "🧗‍♂️",
     "url": "https://eps-barletta.github.io/ClimbTrack/",
-    "description": "Analyse de parcours et progression en escalade. QR code compatible ScaProf.",
+    "icon": "🧗‍♂️",
     "category": "CA2",
-    "matiere": ""
+    "matiere": "",
+    "description": "Analyse de parcours et progression en escalade."
   },
   {
     "id": 4,
