@@ -84,5 +84,13 @@
     "description": "Chrono‑Minuteur propose un chronomètre et un compte à rebours personnalisables pour gérer facilement vos séances.",
     "category": "EPS-OUTILS",
     "matiere": ""
+  },
+  {
+    "name": "DER DIE DAS",
+    "icon": "🇩🇪",
+    "url": "https://eps-barletta.github.io/Der-Die-Das/",
+    "description": "Travail sur les Der Die Das",
+    "category": "",
+    "matiere": "Allemand"
   }
 ]
