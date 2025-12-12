@@ -5,8 +5,8 @@
   <title>EPS Barletta • Applications Web Pédagogiques</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <style>
 
+  <style>
     /* ----- PAGE DE GARDE MODERNE ----- */
 
     body {
@@ -77,7 +77,6 @@
       margin-top: 40px;
       padding-bottom: 10px;
     }
-
   </style>
 </head>
 
@@ -85,14 +84,24 @@
 
 <div class="landing-container">
 
-  <!-- Bouton admin -->
+  <!-- En-tête : Contact + Admin -->
   <header class="landing-header">
-    <a href="admin.html" class="btn-outline btn-compact">Admin</a>
+    <div style="display:flex; gap:10px;">
+      <a href="mailto:epsbarletta@gmail.com" class="btn-outline btn-compact">
+        📧 Contact
+      </a>
+      <a href="admin.html" class="btn-outline btn-compact">
+        Admin
+      </a>
+    </div>
   </header>
 
   <!-- Contenu central -->
   <main class="landing-main">
-    <h1 class="landing-title">EPS Barletta<br>Applications Web </h1>
+    <h1 class="landing-title">
+      EPS Barletta<br>
+      Applications Web
+    </h1>
 
     <div class="landing-subtitle">
       La pédagogie comme terrain de jeu.
@@ -116,7 +125,7 @@
 
 </div>
 
-<!-- Script mode clair/sombre -->
+<!-- Script mode clair / sombre -->
 <script>
   const body = document.body;
   const stored = localStorage.getItem("eps-theme");
