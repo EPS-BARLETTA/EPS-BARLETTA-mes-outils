@@ -92,5 +92,13 @@
     "description": "Travail sur les Der Die Das",
     "category": "",
     "matiere": "Allemand"
+  },
+  {
+    "name": "Verbes Irréguliers",
+    "icon": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "url": "https://eps-barletta.github.io/verbes-irreguliers/",
+    "description": "Une application simple et interactive pour réviser et s’entraîner aux verbes irréguliers anglais.",
+    "category": "",
+    "matiere": ""
   }
 ]
