@@ -79,7 +79,7 @@
   },
   {
     "name": "Chrono Minuteur",
-    "icon": "🏃‍♀️🤸🏻‍♀️🤺🧗‍♀️",
+    "icon": "⏱️",
     "url": "https://eps-barletta.github.io/Chrono-Minuteur-/index.html",
     "description": "Chrono‑Minuteur propose un chronomètre et un compte à rebours personnalisables pour gérer facilement vos séances.",
     "category": "EPS-OUTILS",
@@ -92,13 +92,5 @@
     "description": "Travail sur les Der Die Das",
     "category": "",
     "matiere": "Allemand"
-  },
-  {
-    "name": "Verbes Irréguliers",
-    "icon": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "url": "https://eps-barletta.github.io/verbes-irreguliers/",
-    "description": "Une application simple et interactive pour réviser et s’entraîner aux verbes irréguliers anglais.",
-    "category": "",
-    "matiere": ""
   }
 ]
