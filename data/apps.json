@@ -97,16 +97,8 @@
     "name": "Verbes irréguliers",
     "icon": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "url": "https://eps-barletta.github.io/verbes-irreguliers/",
-    "description": "Une application simple et interactive pour réviser et s’entraîner aux verbes irréguliers anglais.",
+    "description": "Une application simple et interactive pour réviser et s’entraîner aux verbes irréguliers anglais.\nCompatible ScanProf",
     "category": "",
     "matiere": "Anglais"
-  },
-  {
-    "name": "ConjuFun",
-    "icon": "🇫🇷",
-    "url": "https://eps-barletta.github.io/francais-conjufun/",
-    "description": "Atelier des conjugaisons. \nCompatible ScanProf",
-    "category": "",
-    "matiere": "Français"
   }
 ]
