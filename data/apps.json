@@ -108,5 +108,13 @@
     "description": "L’atelier des conjugaisons.\nCompatible ScanProf",
     "category": "",
     "matiere": "Français"
+  },
+  {
+    "name": "EPS-DataCollector",
+    "icon": "📊",
+    "url": "https://eps-barletta.github.io/EPS-DataCollector/",
+    "description": "📊 EPS DataCollector\nApplication web pour créer des grilles d’observation, collecter des données via QR code (sans compte), et exporter les résultats en PDF ou en QR compatibles ScanProf.",
+    "category": "EPS-OUTILS",
+    "matiere": ""
   }
 ]
