@@ -113,8 +113,16 @@
     "name": "EPS-DataCollector",
     "icon": "📊",
     "url": "https://eps-barletta.github.io/EPS-DataCollector/",
-    "description": "EPS DataCollector\nApplication web pour créer des grilles d’observation, collecter des données via QR code (sans compte), et exporter les résultats en PDF ou en QR compatibles ScanProf.\n🔒 Accès protégé : mot de passe à demander par mail.",
+    "description": "📊 EPS DataCollector\nApplication web pour créer des grilles d’observation, collecter des données via QR code (sans compte), et exporter les résultats en PDF ou en QR compatibles ScanProf.\n🔒 Accès protégé : mot de passe à demander par mail.",
     "category": "EPS-OUTILS",
     "matiere": ""
+  },
+  {
+    "name": "EPS-DataCollector",
+    "icon": "📊",
+    "url": "https://eps-barletta.github.io/EPS-DataCollector/",
+    "description": "EPS DataCollector\nApplication web pour créer des grilles d’observation, collecter des données via QR code (sans compte), et exporter les résultats en PDF ou en QR compatibles ScanProf.\n🔒 Accès protégé : mot de passe à demander par mail.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS et autres"
   }
 ]
