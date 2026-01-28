@@ -124,5 +124,13 @@
     "description": "Pilote est une application simple pour aider les enfants avec TDAH et leurs parents à organiser les routines et suivre le quotidien",
     "category": "",
     "matiere": "TDAH"
+  },
+  {
+    "name": "Scanprof V2",
+    "icon": "💾",
+    "url": "https://eps-barletta.github.io/ScanProf-V2/index.html",
+    "description": "ScanProf V2 est une application web créée par l’équipe d’EPS du Lycée Vauban (Luxembourg) pour scanner des QR-codes, gérer les participants, les classes et les séances, et offrir des outils pratiques pour l’enseignement d’EPS.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
