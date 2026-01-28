@@ -116,5 +116,13 @@
     "description": "📊 EPS DataCollector\nApplication web pour créer des grilles d’observation, collecter des données via QR code (sans compte), et exporter les résultats en PDF ou en QR compatibles ScanProf.\n🔒 Accès protégé : mot de passe à demander par mail.",
     "category": "EPS-OUTILS",
     "matiere": ""
+  },
+  {
+    "name": "ScanProf V2",
+    "icon": "",
+    "url": "https://eps-barletta.github.io/ScanProf-V2/",
+    "description": "ScanProf V2 est une application web créée par l’équipe d’EPS du Lycée Vauban (Luxembourg) pour scanner des QR-codes, gérer les participants, les classes et les séances, et offrir des outils pratiques pour l’enseignement d’EPS.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
