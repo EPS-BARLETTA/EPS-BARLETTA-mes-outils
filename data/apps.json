@@ -123,5 +123,13 @@
     "description": "ScanProf V2 a été amélioré : il conserve les fonctions essentielles et s’enrichit d’outils d’écriture pour faciliter son utilisation. Il intègre la gestion des classes et propose l’accès aux catalogues de mes applications",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "ArcAthlon-V2",
+    "icon": "🏹",
+    "url": "https://eps-barletta.github.io/arcathlon-V2/",
+    "description": "Suivi course-tir : chronos, tours et scores.\nCompatible ScanProf",
+    "category": "CA1",
+    "matiere": "EPS"
   }
 ]
