@@ -1,14 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "ScanProf",
-    "url": "https://eps-barletta.github.io/ScanProf/",
-    "icon": "📸",
-    "category": "EPS-OUTILS",
-    "matiere": "Outil transversal",
-    "description": "Scanner intelligent pour lire des QR Codes EPS."
-  },
-  {
     "name": "RunStats",
     "icon": "🏃‍♂️",
     "url": "https://eps-barletta.github.io/RunStats/",
