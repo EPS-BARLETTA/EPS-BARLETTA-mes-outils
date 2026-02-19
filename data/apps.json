@@ -139,5 +139,13 @@
     "description": "LaserRun est une application web EPS permettant de gérer une épreuve de Laser Run et d’exporter les résultats via QR code dans un format compatible ScanProf.",
     "category": "CA1",
     "matiere": "EPS"
+  },
+  {
+    "name": "EPS-Matrix",
+    "icon": "🧮",
+    "url": "https://eps-barletta.github.io/Projet-Matrix/",
+    "description": "Crée tes cordées ou équipes, lance des rotations en montée/descente et visualise instantanément les élèves évalués. Personnalise tes observables et ton barème pour construire une évaluation sur mesure.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
