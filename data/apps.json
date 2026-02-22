@@ -147,5 +147,13 @@
     "description": "Crée tes cordées ou équipes, lance des rotations en montée/descente et visualise instantanément les élèves évalués. Personnalise tes observables et ton barème pour construire une évaluation sur mesure.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "CrossTraining",
+    "icon": "🏋️",
+    "url": "https://eps-barletta.github.io/cross-training/",
+    "description": "Application de cross training facilitant l’entraînement autonome, avec modes Entraînement et Skill compatibles ScanProf.",
+    "category": "CA5",
+    "matiere": "EPS"
   }
 ]
