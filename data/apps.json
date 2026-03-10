@@ -160,7 +160,7 @@
     "name": "ZoneTrack",
     "icon": "📊",
     "url": "https://eps-barletta.github.io/ZoneTrack/",
-    "description": "ZoneTrack est une application permettant d’analyser et visualiser les zones de frappe dans les sports de raquette grâce à une gestion de plusieurs types de terrains et une fonction heatmap — compatible ScanProf.",
+    "description": "ZoneTrack est une application permettant d’analyser et visualiser les zones de frappe dans les sports de raquette grâce à une gestion de plusieurs types de terrains et une fonction heatmap, inspirée de BadX de Jérôme SACARD — compatible ScanProf.",
     "category": "CA4",
     "matiere": "EPS"
   }
