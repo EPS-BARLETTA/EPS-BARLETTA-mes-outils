@@ -163,5 +163,13 @@
     "description": "ZoneTrack est une application permettant d’analyser et visualiser les zones de frappe dans les sports de raquette grâce à une gestion de plusieurs types de terrains et une fonction heatmap, inspirée de BadX de Jérôme SACARD — compatible ScanProf.",
     "category": "CA4",
     "matiere": "EPS"
+  },
+  {
+    "name": "Badminton EPS- Parcours Problèmes & Progression",
+    "icon": "🏸",
+    "url": "https://eps-badminton-de-la-problematique-a-dun.vercel.app/",
+    "description": "Cette application web est une adaptation numérique du livret Badminton en EPS de la FFBaD , conçue pour rendre le contenu plus accessible et plus facilement utilisable sur le terrain, sans en modifier les principes pédagogiques, mais en facilitant la navigation.",
+    "category": "CA4",
+    "matiere": "Badminton"
   }
 ]
