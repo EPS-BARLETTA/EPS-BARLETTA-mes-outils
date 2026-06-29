@@ -171,5 +171,13 @@
     "description": "Cette application web est une adaptation numérique du livret Badminton en EPS de la FFBaD , conçue pour rendre le contenu plus accessible et plus facilement utilisable sur le terrain, sans en modifier les principes pédagogiques, mais en facilitant la navigation.",
     "category": "CA4",
     "matiere": "Badminton"
+  },
+  {
+    "name": "conjugaison-coach",
+    "icon": "🇫🇷🧑🏼‍🎓",
+    "url": "https://conjugaison-coach-pro.lovable.app",
+    "description": "Prototype d'application éducative réalisé avec Lovable.dev pour faciliter l'apprentissage de la conjugaison française.",
+    "category": "",
+    "matiere": "Français"
   }
 ]
