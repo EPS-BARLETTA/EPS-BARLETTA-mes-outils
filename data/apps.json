@@ -179,5 +179,13 @@
     "description": "Prototype d'application éducative réalisé avec Lovable.dev pour faciliter l'apprentissage de la conjugaison française.",
     "category": "",
     "matiere": "Français"
+  },
+  {
+    "name": "MentalMath",
+    "icon": "🧮👩‍🎓",
+    "url": "https://defi-calcul-ludique.preview.emergentagent.com/",
+    "description": "MentalMath est une application web ludique d'entraînement au calcul mental pour les collégiens de la 6ème à la 3ème, avec modes solo, challenge et défi à deux, réalisée avec emergent.sh.",
+    "category": "",
+    "matiere": "Maths"
   }
 ]
