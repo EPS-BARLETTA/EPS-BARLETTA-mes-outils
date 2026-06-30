@@ -187,5 +187,13 @@
     "description": "MentalMath est une application web ludique d'entraînement au calcul mental pour les collégiens de la 6ème à la 3ème, avec modes solo, challenge et défi à deux, réalisée avec emergent.sh.",
     "category": "",
     "matiere": "Maths"
+  },
+  {
+    "name": "CréaGroupe",
+    "icon": "👨🏻‍💻",
+    "url": "https://eps-barletta.github.io/CreaGroupe/",
+    "description": "CréaGroupe est l'assistant intelligent des enseignants d'EPS pour composer instantanément des groupes justes, équilibrés et adaptables à chaque situation pédagogique.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
