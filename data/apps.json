@@ -197,11 +197,11 @@
     "matiere": "EPS"
   },
   {
-    "name": "Mon Carnet de Suivi",
-    "icon": "📘",
-    "url": "https://carnet-de-suivi.vercel.app/",
-    "description": "Un carnet d’entraînement numérique permettant aux élèves de suivre leur progression, consigner leurs séances et analyser leur pratique au fil d’un cycle d’EPS.",
-    "category": "EPS-OUTILS",
-    "matiere": "EPS"
+    "name": "Fais Travailler tes Méninges",
+    "icon": "🤔✖️➕➗",
+    "url": "https://travaille-tes-meninges.vercel.app/",
+    "description": "Une application ludique de mathématiques proposant des défis et exercices interactifs pour s’entraîner, réfléchir et progresser à son rythme.",
+    "category": "",
+    "matiere": "Maths"
   }
 ]
