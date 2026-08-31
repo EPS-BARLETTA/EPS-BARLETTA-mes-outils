@@ -195,5 +195,13 @@
     "description": "CréaGroupe est l'assistant intelligent des enseignants d'EPS pour composer instantanément des groupes justes, équilibrés et adaptables à chaque situation pédagogique.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "Mon Carnet de Suivi",
+    "icon": "📘",
+    "url": "https://carnet-de-suivi.vercel.app/",
+    "description": "Un carnet d’entraînement numérique permettant aux élèves de suivre leur progression, consigner leurs séances et analyser leur pratique au fil d’un cycle d’EPS.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
