@@ -203,5 +203,13 @@
     "description": "Une application ludique de mathématiques proposant des défis et exercices interactifs pour s’entraîner, réfléchir et progresser à son rythme.",
     "category": "",
     "matiere": "Maths"
+  },
+  {
+    "name": "Mon carnet de suivi",
+    "icon": "📘",
+    "url": "https://carnet-de-suivi.vercel.app/",
+    "description": "Un carnet d’entraînement numérique permettant aux élèves de suivre leur progression, consigner leurs séances et analyser leur pratique tout au long d’un cycle d’EPS.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
