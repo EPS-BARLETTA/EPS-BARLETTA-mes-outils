@@ -207,7 +207,7 @@
   {
     "name": "Mon carnet de suivi",
     "icon": "📘",
-    "url": "https://carnet-de-suivi.vercel.app/",
+    "url": "https://carnetentrainementv2.vercel.app/",
     "description": "Un carnet d’entraînement numérique permettant aux élèves de suivre leur progression, consigner leurs séances et analyser leur pratique tout au long d’un cycle d’EPS.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
