@@ -219,5 +219,13 @@
     "description": "**DemiFondScan est une application web hors ligne, couplée à Chrono Carnet EPS, qui permet de récupérer, centraliser et exploiter les résultats de demi-fond des élèves.**",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "ChronoCarnetEPS",
+    "icon": "⏱️📗",
+    "url": "https://chrono-carnet-eps.vercel.app/",
+    "description": "Application hors ligne- Chrono Carnet EPS permet de chronométrer et enregistrer les performances des élèves, en lien avec DemiFondScan pour centraliser les résultats.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
