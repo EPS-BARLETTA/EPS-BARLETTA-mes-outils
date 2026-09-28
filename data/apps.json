@@ -211,5 +211,13 @@
     "description": "Un carnet d’entraînement numérique permettant aux élèves de suivre leur progression, consigner leurs séances et analyser leur pratique tout au long d’un cycle d’EPS.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "ChronoCarnetEPS",
+    "icon": "⏱️",
+    "url": "https://chrono-carnet-eps.vercel.app/",
+    "description": "Application hors ligne -Chrono Carnet EPS permet de chronométrer et enregistrer les performances des élèves, en lien avec DemiFondScan pour centraliser les résultats et un carnet de suivi.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
