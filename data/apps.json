@@ -227,5 +227,13 @@
     "description": "Application hors ligne- Chrono Carnet EPS permet de chronométrer et enregistrer les performances des élèves, en lien avec DemiFondScan pour centraliser les résultats.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "PoulesEPS",
+    "icon": "📇",
+    "url": "https://poules-eps.teamvauban-1631.chatgpt.site/",
+    "description": "Une application EPS qui génère les rencontres et les rotations selon le nombre d’équipes, permet de choisir le barème de points et calcule automatiquement le classement à partir des scores saisis.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
