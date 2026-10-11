@@ -259,5 +259,13 @@
     "description": "Une application permettant à l’enseignant d’organiser ses classes, de gérer différentes formes de rencontres et de défis (montée-descente, poules, coopération), tout en suivant les résultats et la progression individuelle des élèves.",
     "category": "CA4",
     "matiere": "EPS"
+  },
+  {
+    "name": "ObservationSportsCo",
+    "icon": "⚽️🏀🏐🥏",
+    "url": "https://observationssportco.vercel.app/",
+    "description": "Une application intuitive pour dynamiser vos cycles de sports collectifs : créez vos équipes, gérez les matchs, évaluez les progrès et transformez vos élèves en véritables observateurs grâce à des défis d’observation accessibles par QR code !",
+    "category": "CA4",
+    "matiere": "EPS"
   }
 ]
