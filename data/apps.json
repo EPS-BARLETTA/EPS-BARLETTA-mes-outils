@@ -243,5 +243,13 @@
     "description": "Une application de révision qui propose des mots en allemand à traduire en français, en dictant ou en épelant ses réponses au micro, avec une correction immédiate et la possibilité de retravailler ses erreurs.",
     "category": "",
     "matiere": "Français"
+  },
+  {
+    "name": "Sports De Raquettes Carnet d’un prof",
+    "icon": "🏓🏸",
+    "url": "https://sports-de-raquettes-carnet-du-prof.vercel.app/",
+    "description": "Une application pédagogique de sport de raquettes permettant à l’enseignant d’organiser ses classes, de gérer différentes formes de rencontres et de défis (montée-descente, poules, coopération), tout en suivant les résultats et la progression individuelle et collective des élèves.",
+    "category": "CA4",
+    "matiere": "EPS"
   }
 ]
