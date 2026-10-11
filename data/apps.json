@@ -245,11 +245,11 @@
     "matiere": "Français"
   },
   {
-    "name": "Sports De Raquettes Carnet d’un prof",
-    "icon": "🏓🏸",
-    "url": "https://sports-de-raquettes-carnet-du-prof.vercel.app/",
-    "description": "Une application pédagogique de sport de raquettes permettant à l’enseignant d’organiser ses classes, de gérer différentes formes de rencontres et de défis (montée-descente, poules, coopération), tout en suivant les résultats et la progression individuelle et collective des élèves.",
-    "category": "CA4",
+    "name": "DemiFondScan",
+    "icon": "⏺️💾",
+    "url": "https://demi-fond-scan-cff.vercel.app/",
+    "description": "Une application pédagogique de demi-fond permettant à l’enseignant de scanner les résultats des élèves via QR code, de centraliser leurs performances, de gérer les séances et les classes, et d’assurer un suivi individuel et collectif tout au long du cycle.",
+    "category": "CA1",
     "matiere": "EPS"
   }
 ]
