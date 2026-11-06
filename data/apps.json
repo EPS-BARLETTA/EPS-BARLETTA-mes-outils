@@ -267,5 +267,13 @@
     "description": "Une application intuitive pour dynamiser vos cycles de sports collectifs : créez vos équipes, gérez les matchs, évaluez les progrès et transformez vos élèves en véritables observateurs grâce à des défis d’observation accessibles par QR code !",
     "category": "CA4",
     "matiere": "EPS"
+  },
+  {
+    "name": "Mes Évaluations d’EPS",
+    "icon": "📗✍️",
+    "url": "https://eps-barletta.github.io/MesEvaluationsEPS/",
+    "description": "Mes évaluations en EPS réunit sur l’iPad vos classes, vos observations, vos bilans de trimestre et les épreuves CCF de Terminale du lycée Vauban, avec un calcul automatique des notes à partir de ses fiches certificatives, et garde toutes les données sur l’appareil, même hors connexion.",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
