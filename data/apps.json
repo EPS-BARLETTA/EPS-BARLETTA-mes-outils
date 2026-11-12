@@ -275,5 +275,13 @@
     "description": "Mes évaluations en EPS réunit sur l’iPad vos classes, vos observations, vos bilans de trimestre et les épreuves CCF de Terminale du lycée Vauban, avec un calcul automatique des notes à partir de ses fiches certificatives, et garde toutes les données sur l’appareil, même hors connexion.",
     "category": "EPS-OUTILS",
     "matiere": "EPS"
+  },
+  {
+    "name": "PhotoFinish",
+    "icon": "⏱️📸",
+    "url": "https://eps-barletta.github.io/VideoEPS/",
+    "description": "Application qui vous permet de filmer la ligne d’arrivée d’une course, chronomètre chaque élève et garde une photo de chaque arrivant avec le temps. ( on peut exporter le classement nominatif en PDF imprimable ou enregistrer la vidéo de la course avec le chrono incrusté, et les données des élèves restent sur l’appareil, sans être envoyées en ligne.)",
+    "category": "EPS-OUTILS",
+    "matiere": "EPS"
   }
 ]
